@@ -1,0 +1,11 @@
+streamlit
+langgraph
+rdflib
+faiss-cpu
+sentence-transformers
+numpy
+pytesseract
+pdf2image
+Pillow
+requests
+pandas

@@ -1,0 +1,76 @@
+@prefix ex: <http://example.org/colonial#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:HistoricalEvent a rdfs:Class .
+ex:ColonialPower a rdfs:Class .
+ex:Governor a rdfs:Class .
+ex:Reform a rdfs:Class .
+ex:Region a rdfs:Class .
+
+ex:affected_by a rdf:Property ;
+    rdfs:domain ex:HistoricalEvent ;
+    rdfs:range ex:ColonialPower .
+
+ex:succeeded_by a rdf:Property ;
+    rdfs:domain ex:ColonialPower ;
+    rdfs:range ex:ColonialPower .
+
+ex:implemented a rdf:Property ;
+    rdfs:domain ex:Governor ;
+    rdfs:range ex:Reform .
+
+ex:occurred_in a rdf:Property ;
+    rdfs:domain ex:HistoricalEvent ;
+    rdfs:range ex:Region .
+
+ex:event_year a rdf:Property ;
+    rdfs:domain ex:HistoricalEvent ;
+    rdfs:range xsd:gYear .
+
+ex:Portuguese a ex:ColonialPower ;
+    rdfs:label "Portuguese"@en ;
+    rdfs:label "පෘතුගීසි"@si ;
+    ex:succeeded_by ex:Dutch .
+
+ex:Dutch a ex:ColonialPower ;
+    rdfs:label "Dutch"@en ;
+    rdfs:label "ලන්දේසි"@si ;
+    ex:succeeded_by ex:British .
+
+ex:British a ex:ColonialPower ;
+    rdfs:label "British"@en ;
+    rdfs:label "බ්‍රිතාන්‍ය"@si .
+
+ex:Arrival1505 a ex:HistoricalEvent ;
+    rdfs:label "Portuguese Arrival in Sri Lanka"@en ;
+    rdfs:label "1505 පෘතුගීසීන්ගේ පැමිණීම"@si ;
+    ex:affected_by ex:Portuguese ;
+    ex:event_year "1505"^^xsd:gYear .
+
+ex:DutchTakeover1658 a ex:HistoricalEvent ;
+    rdfs:label "Dutch takeover of coastal areas"@en ;
+    rdfs:label "1658 ලන්දේසි වෙරළබඩ පාලනය"@si ;
+    ex:affected_by ex:Dutch ;
+    ex:event_year "1658"^^xsd:gYear .
+
+ex:ColebrookeCameron1833 a ex:Reform ;
+    rdfs:label "Colebrooke-Cameron Reforms"@en ;
+    rdfs:label "1833 කොල්බෘක්-කැමරන් ප්‍රතිසංස්කරණ"@si .
+
+ex:EdwardBarnes a ex:Governor ;
+    rdfs:label "Edward Barnes"@en ;
+    rdfs:label "එඩ්වඩ් බාර්න්ස්"@si ;
+    ex:implemented ex:ColebrookeCameron1833 .
+
+ex:UvaWellassa1818 a ex:HistoricalEvent ;
+    rdfs:label "Uva-Wellassa Rebellion"@en ;
+    rdfs:label "1818 උව වෙල්ලස්ස කැරැල්ල"@si ;
+    ex:affected_by ex:British ;
+    ex:event_year "1818"^^xsd:gYear ;
+    ex:occurred_in ex:Uva .
+
+ex:Uva a ex:Region ;
+    rdfs:label "Uva"@en ;
+    rdfs:label "උව"@si .
