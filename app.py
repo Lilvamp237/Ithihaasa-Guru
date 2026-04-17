@@ -41,12 +41,17 @@ if st.button("ලකුණු කරන්න", type="primary"):
                 st.exception(e)
             else:
                 st.success("ලකුණුකරණය සාර්ථකයි.")
-                c1, c2 = st.columns([1, 2])
+                confidence = result.get("confidence", {})
+                confidence_score = confidence.get("score", 0.0)
+                c1, c2, c3 = st.columns([1, 2, 1])
                 with c1:
                     st.metric("මුළු ලකුණු", f"{result['score_out_of_20']} / 20")
                 with c2:
                     st.write("**අවසාන ප්‍රතිචාරය**")
                     st.write(result["final_feedback_si"])
+                with c3:
+                    st.metric("Confidence Score", f"{confidence_score:.1f}%")
+                    st.caption(f"Level: {confidence.get('level', 'Unknown')}")
 
                 st.subheader("විස්තරාත්මක ලකුණු බෙදාහැරීම")
                 breakdown_rows = []
@@ -60,6 +65,12 @@ if st.button("ලකුණු කරන්න", type="primary"):
                         }
                     )
                 st.dataframe(pd.DataFrame(breakdown_rows), use_container_width=True, hide_index=True)
+
+                if confidence_score < 60:
+                    st.warning("පද්ධතියට අදාළ සාක්ෂි අඩුව නිසා විශ්වාස මට්ටම අඩුය. පහත මාර්ගෝපදේශ අංශවල සාක්ෂි දුර්වලයි.")
+                    weak_rows = confidence.get("low_confidence_sections", [])
+                    if weak_rows:
+                        st.dataframe(pd.DataFrame(weak_rows), use_container_width=True, hide_index=True)
 
                 st.subheader("සාක්ෂි-මත පැහැදිලි කිරීම")
                 st.write("**RAG Top Hits**")
