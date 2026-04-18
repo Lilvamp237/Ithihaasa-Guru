@@ -3,74 +3,90 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+# --- Schema Definition ---
 ex:HistoricalEvent a rdfs:Class .
 ex:ColonialPower a rdfs:Class .
-ex:Governor a rdfs:Class .
+ex:Ruler a rdfs:Class .
 ex:Reform a rdfs:Class .
-ex:Region a rdfs:Class .
 
 ex:affected_by a rdf:Property ;
     rdfs:domain ex:HistoricalEvent ;
     rdfs:range ex:ColonialPower .
 
-ex:succeeded_by a rdf:Property ;
-    rdfs:domain ex:ColonialPower ;
+ex:associated_with a rdf:Property ;
+    rdfs:domain ex:Ruler ;
     rdfs:range ex:ColonialPower .
 
-ex:implemented a rdf:Property ;
-    rdfs:domain ex:Governor ;
-    rdfs:range ex:Reform .
-
-ex:occurred_in a rdf:Property ;
-    rdfs:domain ex:HistoricalEvent ;
-    rdfs:range ex:Region .
+ex:implemented_by a rdf:Property ;
+    rdfs:domain ex:Reform ;
+    rdfs:range ex:ColonialPower .
 
 ex:event_year a rdf:Property ;
     rdfs:domain ex:HistoricalEvent ;
     rdfs:range xsd:gYear .
 
+# --- Colonial Powers ---
 ex:Portuguese a ex:ColonialPower ;
     rdfs:label "Portuguese"@en ;
-    rdfs:label "පෘතුගීසි"@si ;
-    ex:succeeded_by ex:Dutch .
+    rdfs:label "පෘතුගීසි"@si .
 
 ex:Dutch a ex:ColonialPower ;
     rdfs:label "Dutch"@en ;
-    rdfs:label "ලන්දේසි"@si ;
-    ex:succeeded_by ex:British .
+    rdfs:label "ලන්දේසි"@si .
 
 ex:British a ex:ColonialPower ;
     rdfs:label "British"@en ;
     rdfs:label "බ්‍රිතාන්‍ය"@si .
 
+# --- Portuguese Period (extracted from gr-8 data) ---
 ex:Arrival1505 a ex:HistoricalEvent ;
-    rdfs:label "Portuguese Arrival in Sri Lanka"@en ;
-    rdfs:label "1505 පෘතුගීසීන්ගේ පැමිණීම"@si ;
+    rdfs:label "පෘතුගීසීන්ගේ පැමිණීම"@si ;
     ex:affected_by ex:Portuguese ;
     ex:event_year "1505"^^xsd:gYear .
 
+ex:VijayabaKollaya a ex:HistoricalEvent ;
+    rdfs:label "විජයබා කොල්ලය"@si ;
+    ex:affected_by ex:Portuguese ;
+    ex:event_year "1521"^^xsd:gYear .
+
+ex:DonJuanDharmapala a ex:Ruler ;
+    rdfs:label "දොන් ජුවන් ධර්මපාල"@si ;
+    ex:associated_with ex:Portuguese .
+
+ex:Mayadunne a ex:Ruler ;
+    rdfs:label "මායාදුන්නේ"@si ;
+    ex:associated_with ex:Portuguese .
+
+# --- Dutch Period ---
+ex:WesterwoldTreaty1638 a ex:HistoricalEvent ;
+    rdfs:label "වෙස්ටර්වෝල්ඩ් ගිවිසුම"@si ;
+    ex:affected_by ex:Dutch ;
+    ex:event_year "1638"^^xsd:gYear .
+
 ex:DutchTakeover1658 a ex:HistoricalEvent ;
-    rdfs:label "Dutch takeover of coastal areas"@en ;
-    rdfs:label "1658 ලන්දේසි වෙරළබඩ පාලනය"@si ;
+    rdfs:label "ලන්දේසි වෙරළබඩ පාලනය ඇරඹීම"@si ;
     ex:affected_by ex:Dutch ;
     ex:event_year "1658"^^xsd:gYear .
 
-ex:ColebrookeCameron1833 a ex:Reform ;
-    rdfs:label "Colebrooke-Cameron Reforms"@en ;
-    rdfs:label "1833 කොල්බෘක්-කැමරන් ප්‍රතිසංස්කරණ"@si .
-
-ex:EdwardBarnes a ex:Governor ;
-    rdfs:label "Edward Barnes"@en ;
-    rdfs:label "එඩ්වඩ් බාර්න්ස්"@si ;
-    ex:implemented ex:ColebrookeCameron1833 .
-
-ex:UvaWellassa1818 a ex:HistoricalEvent ;
-    rdfs:label "Uva-Wellassa Rebellion"@en ;
-    rdfs:label "1818 උව වෙල්ලස්ස කැරැල්ල"@si ;
+# --- British Period ---
+ex:KandyanConvention1815 a ex:HistoricalEvent ;
+    rdfs:label "උඩරට ගිවිසුම (1815)"@si ;
     ex:affected_by ex:British ;
-    ex:event_year "1818"^^xsd:gYear ;
-    ex:occurred_in ex:Uva .
+    ex:event_year "1815"^^xsd:gYear .
 
-ex:Uva a ex:Region ;
-    rdfs:label "Uva"@en ;
-    rdfs:label "උව"@si .
+ex:UvaWellassaRebellion1818 a ex:HistoricalEvent ;
+    rdfs:label "ඌව වෙල්ලස්ස කැරැල්ල"@si ;
+    ex:affected_by ex:British ;
+    ex:event_year "1818"^^xsd:gYear .
+
+ex:ColebrookeCameron1833 a ex:Reform ;
+    rdfs:label "කොල්බෘක්-කැමරන් ප්‍රතිසංස්කරණ"@si ;
+    ex:implemented_by ex:British .
+
+ex:RobertBrownrigg a ex:Ruler ;
+    rdfs:label "රොබට් බ්‍රවුන්රිග්"@si ;
+    ex:associated_with ex:British .
+
+ex:EdwardBarnes a ex:Ruler ;
+    rdfs:label "එඩ්වඩ් බාර්න්ස්"@si ;
+    ex:associated_with ex:British .
