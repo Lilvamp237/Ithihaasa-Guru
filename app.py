@@ -74,10 +74,18 @@ if st.button("ලකුණු කරන්න", type="primary"):
 
                 st.subheader("සාක්ෂි-මත පැහැදිලි කිරීම")
                 st.write("**RAG Top Hits**")
+                st.write("**RAG Top Hits**")
                 for i, hit in enumerate(result["evidence"]["rag_top_hits"], start=1):
+                    # Use .get() to provide fallbacks for missing keys
+                    source = hit.get("source", "Unknown Source")
+                    chunk = hit.get("chunk_id", "N/A")
+                    score = hit.get("score", 0.0)
+                    # Check for 'snippet' or fall back to 'text'
+                    snippet = hit.get("snippet", hit.get("text", "No content available"))
+
                     st.markdown(
-                        f"{i}. **මූලාශ්‍රය:** `{hit['source']}` (chunk: {hit['chunk_id']}, sim: {hit['score']:.3f})\n\n"
-                        f"> {hit['snippet']}"
+                        f"{i}. **මූලාශ්‍රය:** `{source}` (chunk: {chunk}, sim: {score:.3f})\n\n"
+                        f"> {snippet}"
                     )
                 st.write("**Ontology Facts**")
                 for fact in result["evidence"]["ontology_facts"]:
