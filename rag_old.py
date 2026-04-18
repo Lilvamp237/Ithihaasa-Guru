@@ -7,7 +7,8 @@ from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, List, Optional
-import os
+
+# Force Offline mode for HuggingFace
 os.environ['TRANSFORMERS_OFFLINE'] = '1'
 os.environ['HF_HUB_OFFLINE'] = '1'
 
@@ -18,15 +19,19 @@ import requests
 from pdf2image import convert_from_path
 from sentence_transformers import SentenceTransformer
 
+# --- CONFIGURATION ---
 DEFAULT_EMBED_MODEL = "BAAI/bge-m3"
-DEFAULT_CLEANUP_MODEL = "Tharusha_Dilhara_Jayadeera/singemma"
+# Recommended: Use 4b for cleanup/ingestion if 12b is too slow for your hardware
+DEFAULT_CLEANUP_MODEL = "Tharusha_Dilhara_Jayadeera/singemma" 
 
 def clean_text(text: str) -> str:
+    """Removes non-printable Sinhala artifacts and normalizes whitespace."""
     text = text.replace("\u200d", " ").replace("\ufeff", " ")
     text = re.sub(r"\s+", " ", text)
     return text.strip()
 
 def chunk_text(text: str, chunk_size: int = 900, overlap: int = 150) -> List[str]:
+    """Splits cleaned text into overlapping segments for RAG."""
     if not text: return []
     chunks: List[str] = []
     start = 0
@@ -39,12 +44,14 @@ def chunk_text(text: str, chunk_size: int = 900, overlap: int = 150) -> List[str
     return chunks
 
 def ocr_pdf(pdf_path: Path, language: str = "sin+eng", dpi: int = 300) -> List[Dict[str, Any]]:
+    """Extracts raw text from PDF pages using OCR."""
     print(f"--- Starting OCR for: {pdf_path.name} ---")
     pages = convert_from_path(str(pdf_path), dpi=dpi)
     num_pages = len(pages)
+    
     page_texts: List[Dict[str, Any]] = []
     for i, img in enumerate(pages, start=1):
-        print(f"   [>] Processing page {i}/{num_pages}...", end="\r")
+        print(f"   [>] OCR Extraction: Page {i}/{num_pages}...", end="\r")
         txt = pytesseract.image_to_string(img, lang=language)
         page_texts.append({"page": i, "text": txt})
     print(f"\nFinished OCR for {pdf_path.name}")
@@ -52,6 +59,7 @@ def ocr_pdf(pdf_path: Path, language: str = "sin+eng", dpi: int = 300) -> List[D
 
 @dataclass
 class RAGStore:
+    """Handles the local storage and loading of the FAISS index and metadata[cite: 24]."""
     index: faiss.IndexFlatIP
     metadata: List[Dict[str, Any]]
     embed_model_name: str
@@ -86,19 +94,22 @@ class RAGStore:
         )
 
 def normalize(vectors: np.ndarray) -> np.ndarray:
+    """L2 Normalization for Inner Product search."""
     norms = np.linalg.norm(vectors, axis=1, keepdims=True) + 1e-12
     return vectors / norms
 
-def ollama_cleanup(text: str, model: str, host: str, timeout: int) -> str:
+def ollama_intelligent_ingest(text: str, model: str, host: str, timeout: int) -> Dict[str, Any]:
+    """Agent that cleans text and extracts historical entities for the Ontology[cite: 25, 26]."""
     prompt = (
-        "SYSTEM: You are a professional historical archivist. \n"
-        "TASK: Fix the following OCR-extracted Sinhala text. \n"
-        "STRICT RULES:\n"
-        "1. DO NOT summarize. \n"
-        "2. DO NOT omit any historical dates, names, or locations. \n"
-        "3. Preserve every sentence found in the raw text. \n"
-        "4. Fix spelling and rejoin broken Sinhala words. \n"
-        "5. Output ONLY the fixed Sinhala text. No preamble.\n\n"
+        "SYSTEM: You are a professional Sinhala Historical Archivist. \n"
+        "TASK: Fix the provided OCR text and extract historical entities. \n"
+        "STRICT JSON OUTPUT FORMAT:\n"
+        "{\n"
+        "  \"cleaned_text\": \"The corrected full Sinhala text\",\n"
+        "  \"entities\": [\n"
+        "    {\"name\": \"Entity Name\", \"type\": \"Governor/Event/Reform/Place\", \"power\": \"Portuguese/Dutch/British\"}\n"
+        "  ]\n"
+        "}\n\n"
         f"RAW TEXT:\n{text}"
     )
     url = f"{host}/api/chat"
@@ -106,12 +117,16 @@ def ollama_cleanup(text: str, model: str, host: str, timeout: int) -> str:
         "model": model,
         "messages": [{"role": "user", "content": prompt}],
         "stream": False,
+        "format": "json",
         "options": {"temperature": 0.1},
     }
-    response = requests.post(url, json=payload, timeout=timeout)
-    response.raise_for_status()
-    data = response.json()
-    return str(data["message"]["content"]).strip()
+    try:
+        response = requests.post(url, json=payload, timeout=timeout)
+        response.raise_for_status()
+        return json.loads(response.json()["message"]["content"])
+    except Exception as e:
+        print(f"Agent Extraction Error: {e}")
+        return {"cleaned_text": clean_text(text), "entities": []}
 
 def log_raw_vs_cleaned(log_path: Path, source: str, page: int, raw_text: str, cleaned_text: str) -> None:
     log_path.parent.mkdir(parents=True, exist_ok=True)
@@ -119,21 +134,24 @@ def log_raw_vs_cleaned(log_path: Path, source: str, page: int, raw_text: str, cl
     with log_path.open("a", encoding="utf-8") as handle:
         handle.write(entry)
 
-def clean_pages_with_ollama(pages: List[Dict[str, Any]], model: str, host: str, timeout: int, batch_size: int, log_path: Path, source: str) -> List[Dict[str, Any]]:
-    cleaned_pages: List[Dict[str, Any]] = []
-    for start in range(0, len(pages), batch_size):
-        batch = pages[start : start + batch_size]
-        with ThreadPoolExecutor(max_workers=batch_size) as executor:
-            futures = [executor.submit(ollama_cleanup, item["text"], model, host, timeout) for item in batch]
-            for item, future in zip(batch, futures):
-                try:
-                    cleaned = clean_text(future.result())
-                    log_raw_vs_cleaned(log_path, source, item["page"], item["text"], cleaned)
-                    cleaned_pages.append({"page": item["page"], "text": cleaned})
-                except Exception as e:
-                    print(f"\nError cleaning page {item['page']}: {e}")
-                    cleaned_pages.append({"page": item['page'], "text": item['text']}) # Fallback to raw
-    return cleaned_pages
+def print_dashboard(source: str, pages: int, chunks: int, entities: List[Dict], start_time: float):
+    """Displays the execution Status Dashboard in the terminal."""
+    elapsed = time.time() - start_time
+    print("\n" + "="*60)
+    print(f" 📜 ITHIHAASA GURU: INGESTION DASHBOARD ")
+    print("="*60)
+    print(f"SOURCE: {source}")
+    print(f"STATUS: Completed ✅ | TIME: {elapsed:.2f}s")
+    print("-" * 60)
+    print(f"📊 STATS: Pages: {pages} | Total FAISS Chunks: {chunks}")
+    print("-" * 60)
+    print(f"🔍 DISCOVERED ONTOLOGY ENTITIES:")
+    seen = set()
+    for ent in entities[:8]: # Show top 8
+        if ent['name'] not in seen:
+            print(f"   • {ent['name']} ({ent['type']}) -> {ent['power']}")
+            seen.add(ent['name'])
+    print("="*60 + "\n")
 
 def build_index(
     pdf_paths: List[Path],
@@ -143,68 +161,69 @@ def build_index(
     cleanup_model: str = DEFAULT_CLEANUP_MODEL,
     cleanup_host: str = "http://localhost:11434",
     cleanup_timeout: int = 1200,
-    cleanup_batch: int = 1, # Set to 1 for hardware stability
+    cleanup_batch: int = 1,
+    cleanup_log_path: Optional[Path] = None,
 ) -> None:
-    # 1. Load existing store or initialize new
+    """Main pipeline for building or appending to the RAG database."""
     store = RAGStore.load(out_dir)
     if store:
-        print(f"Loaded existing index with {len(store.metadata)} chunks.")
-        all_chunks = [] # We only embed NEW chunks
+        print(f"Loaded existing index. Appending new books...")
         metadata = store.metadata
         index = store.index
     else:
-        print("Creating a new index.")
-        all_chunks = []
-        metadata = []
-        index = None
+        print("Creating a new history knowledge base.")
+        metadata, index = [], None
 
     embed_model = SentenceTransformer(embed_model_name)
+    log_path = cleanup_log_path or (out_dir / "ocr_cleanup_samples.txt")
 
-    # 2. Process each PDF individually
     for pdf in pdf_paths:
-        # Avoid re-processing the same book if already in metadata
         if any(m['source'] == str(pdf) for m in metadata):
-            print(f"Skipping {pdf.name} (already in index).")
+            print(f"Skipping {pdf.name} (Already in database).")
             continue
 
+        start_time = time.time()
         extracted_pages = ocr_pdf(pdf, language=tesseract_lang)
-        log_path = out_dir / "ocr_cleanup_samples.txt"
         
-        cleaned_pages = clean_pages_with_ollama(
-            pages=extracted_pages, model=cleanup_model, host=cleanup_host,
-            timeout=cleanup_timeout, batch_size=cleanup_batch, log_path=log_path, source=pdf.name
-        )
-
-        current_pdf_chunks = []
-        for page in cleaned_pages:
-            chunks = chunk_text(page["text"])
+        book_entities = []
+        book_chunks = []
+        
+        # Process sequential for hardware stability
+        for page in extracted_pages:
+            print(f"   [>] Agent cleaning & extracting: Page {page['page']}...", end="\r")
+            result = ollama_intelligent_ingest(page["text"], cleanup_model, cleanup_host, cleanup_timeout)
+            
+            cleaned = result.get("cleaned_text", clean_text(page["text"]))
+            book_entities.extend(result.get("entities", []))
+            
+            log_raw_vs_cleaned(log_path, pdf.name, page["page"], page["text"], cleaned)
+            
+            chunks = chunk_text(cleaned)
             for i, ch in enumerate(chunks):
-                current_pdf_chunks.append(ch)
+                book_chunks.append(ch)
                 metadata.append({"source": str(pdf), "page": page["page"], "chunk_id": i, "text": ch})
 
-        if current_pdf_chunks:
-            print(f"Encoding {len(current_pdf_chunks)} new chunks for {pdf.name}...")
-            new_vectors = embed_model.encode(current_pdf_chunks, convert_to_numpy=True, show_progress_bar=True)
-            new_vectors = normalize(new_vectors.astype("float32"))
-
-            if index is None:
-                dim = new_vectors.shape[1]
-                index = faiss.IndexFlatIP(dim)
+        if book_chunks:
+            print(f"\nEncoding {len(book_chunks)} new chunks for {pdf.name}...")
+            new_vectors = normalize(embed_model.encode(book_chunks, show_progress_bar=True).astype("float32"))
             
+            if index is None:
+                index = faiss.IndexFlatIP(new_vectors.shape[1])
             index.add(new_vectors)
             
-            # Save progress after EVERY book
+            # Save incrementally
             store = RAGStore(index=index, metadata=metadata, embed_model_name=embed_model_name, dim=index.d)
             store.save(out_dir)
-            print(f"Saved progress for {pdf.name}. Total chunks: {len(metadata)}")
+            print_dashboard(pdf.name, len(extracted_pages), len(book_chunks), book_entities, start_time)
 
 def retrieve(query: str, out_dir: Path, k: int = 5) -> List[Dict[str, Any]]:
+    """Retrieves relevant local content to support scoring[cite: 24]."""
     store = RAGStore.load(out_dir)
     if not store: return []
     model = SentenceTransformer(store.embed_model_name)
-    qvec = model.encode([query], convert_to_numpy=True).astype("float32")
-    qvec = normalize(qvec)
+    qvec = normalize(model.encode([query], convert_to_numpy=True).astype("float32"))
     scores, indices = store.index.search(qvec, k)
+    
     results = []
     for rank, (score, idx) in enumerate(zip(scores[0], indices[0]), start=1):
         if idx < 0: continue
@@ -212,47 +231,36 @@ def retrieve(query: str, out_dir: Path, k: int = 5) -> List[Dict[str, Any]]:
         results.append({"rank": rank, "score": float(score), "source": m["source"], "page": m["page"], "text": m["text"]})
     return results
 
-
 def parse_args() -> argparse.Namespace:
-    p = argparse.ArgumentParser(description="OCR + FAISS multilingual RAG pipeline (offline).")
+    p = argparse.ArgumentParser(description="OCR + FAISS intelligent RAG pipeline.")
     sub = p.add_subparsers(dest="command", required=True)
 
-    build_p = sub.add_parser("build", help="OCR PDFs and build FAISS index")
-    build_p.add_argument(
-        "--pdfs",
-        nargs="+",
-        #default=["gr8.pdf", "gr9.pdf", "gr10.pdf", "gr11.pdf"],
-        default=["gr-8-pages.pdf", "gr-9-pages.pdf", "gr10-pages.pdf", "gr-11-pages.pdf"],
-        help="Input textbook PDF paths",
-    )
-    build_p.add_argument("--out_dir", default="vector_store", help="Output directory for FAISS store")
-    build_p.add_argument("--embed_model", default=DEFAULT_EMBED_MODEL, help="Embedding model")
-    build_p.add_argument("--tesseract_lang", default="sin+eng", help="Tesseract language pack")
-    build_p.add_argument("--cleanup_model", default=DEFAULT_CLEANUP_MODEL, help="Ollama cleanup model")
-    build_p.add_argument("--cleanup_host", default="http://localhost:11434", help="Ollama host URL")
-    build_p.add_argument("--cleanup_timeout", type=int, default=1200, help="Ollama request timeout (s)")
-    build_p.add_argument("--cleanup_batch", type=int, default=1, help="Pages per async batch")
-    build_p.add_argument(
-        "--cleanup_log",
-        default="vector_store/ocr_cleanup_samples.txt",
-        help="Path for raw vs cleaned samples log",
-    )
+    build_p = sub.add_parser("build", help="Build or append to FAISS index")
+    build_p.add_argument("--pdfs", nargs="+", default=["gr-8-pages.pdf", "gr-9-pages.pdf", "gr10-pages.pdf", "gr-11-pages.pdf"])
+    build_p.add_argument("--out_dir", default="vector_store")
+    build_p.add_argument("--embed_model", default=DEFAULT_EMBED_MODEL)
+    build_p.add_argument("--tesseract_lang", default="sin+eng")
+    build_p.add_argument("--cleanup_model", default=DEFAULT_CLEANUP_MODEL)
+    build_p.add_argument("--cleanup_host", default="http://localhost:11434")
+    build_p.add_argument("--cleanup_timeout", type=int, default=1200)
+    build_p.add_argument("--cleanup_batch", type=int, default=1)
+    build_p.add_argument("--cleanup_log", default="vector_store/ocr_cleanup_samples.txt")
 
-    q_p = sub.add_parser("query", help="Query built FAISS index")
-    q_p.add_argument("--query", required=True, help="Sinhala or English query")
-    q_p.add_argument("--out_dir", default="vector_store", help="Vector store directory")
-    q_p.add_argument("--k", type=int, default=5, help="Top-k retrieval results")
+    q_p = sub.add_parser("query", help="Query local history index")
+    q_p.add_argument("--query", required=True)
+    q_p.add_argument("--out_dir", default="vector_store")
+    q_p.add_argument("--k", type=int, default=5)
 
     return p.parse_args()
-
 
 def main() -> None:
     args = parse_args()
     if args.command == "build":
         pdf_paths = [Path(p) for p in args.pdfs]
         for p in pdf_paths:
-            if not p.exists():
-                raise FileNotFoundError(f"Missing PDF: {p}")
+            if not p.exists(): raise FileNotFoundError(f"Missing PDF: {p}")
+        
+        # Fixed: cleanup_log_path is now defined in build_index signature above
         build_index(
             pdf_paths=pdf_paths,
             out_dir=Path(args.out_dir),
@@ -264,12 +272,10 @@ def main() -> None:
             cleanup_batch=args.cleanup_batch,
             cleanup_log_path=Path(args.cleanup_log),
         )
-        print(f"Built FAISS store at: {args.out_dir}")
+        print(f"Database updated at: {args.out_dir}")
     elif args.command == "query":
         results = retrieve(query=args.query, out_dir=Path(args.out_dir), k=args.k)
         print(json.dumps(results, ensure_ascii=False, indent=2))
 
-
 if __name__ == "__main__":
     main()
-    
