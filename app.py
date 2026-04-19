@@ -6,6 +6,14 @@ import streamlit as st
 
 from scorer_workflow import run_scoring
 
+import warnings
+import logging
+# 1. Suppress Python-level FutureWarnings (the ones you're seeing)
+warnings.filterwarnings("ignore", category=FutureWarning)
+warnings.filterwarnings("ignore", message="Accessing `__path__` from*")
+
+# 2. Silence the Hugging Face library loggers
+logging.getLogger("transformers.modeling_utils").setLevel(logging.ERROR)
 
 st.set_page_config(page_title="Sinhala Colonial History Scorer", layout="wide")
 st.title("ශ්‍රී ලංකාවේ යටත්විජිත ඉතිහාසය - විවෘත පිළිතුරු ලකුණුකරණය")

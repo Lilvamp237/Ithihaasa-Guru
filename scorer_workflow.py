@@ -169,38 +169,55 @@ def grading_agent(state: ScoreState) -> ScoreState:
     guide = state["marking_guide"]
     answer = state["student_answer_si"]
     rag_hits = state.get("rag_hits", [])
-    onto_facts = state.get("ontology_facts", [])
     semantic_report = state.get("semantic_verification", {})
     reviewer_feedback = state.get("critic_feedback", "")
 
-    # Incorporating mandatory requirement: include semantic verification in system prompt
+    # 1. Extract Reference Examples for Calibration
+    refs = question.get("reference_examples", {})
+    high_ref = refs.get("high_score_ref", "N/A")
+    low_ref = refs.get("low_score_ref", "N/A")
+
+    # 2. Construct the "Super-Prompt"
     prompt = f"""
-You are a strict Sinhala history grader.
-Question (Sinhala): {question['question_si']}
-Marking guide JSON: {json.dumps(guide, ensure_ascii=False)}
-Student answer (Sinhala): {answer}
+You are an ELITE and Fair History Professor. 
+Task: Evaluate the student's answer using the provided context and calibration standards.
 
-Retrieved textbook evidence:
-{json.dumps(rag_hits, ensure_ascii=False)}
+---
+STANDARDS FOR CALIBRATION:
+GOLD STANDARD (A- Level / ~15-17 Marks):
+"{high_ref}"
+(Use this to judge what a high-quality, detailed answer looks like.)
 
-Ontology facts:
-{json.dumps(onto_facts, ensure_ascii=False)}
+PARTIAL CREDIT EXAMPLE (C/D Level / ~6-8 Marks):
+"{low_ref}"
+(This is a baseline for answers that have keywords but lack depth. Use this as a ceiling for short responses.)
 
-The Ontology verification agent found these results: {state['semantic_verification']}. 
-If there are mismatches, you MUST deduct marks and explain why in Sinhala.
+---
+GRADING PRINCIPLES:
+1. SUBSTANCE OVER KEYWORDS: Do not just count keywords. If the student answer is similar in length/depth to the 'PARTIAL CREDIT EXAMPLE', do not award more than 8 marks total.
+2. PARTIAL CREDIT: If a fact is present but missing sub-details, award proportional marks. Do not give 0 if the core idea is correct.
+3. ONTOLOGY GUARDRAIL: If the Verification Report flags a "සාවද්‍ය සම්බන්ධය" (Mismatch), you MUST award 0 marks for that specific criterion. 
+4. CITATIONS: You must cite evidence in the explanation using: [RAG rank=<n> source=<path> chunk=<id>].
 
-Reviewer correction feedback (if present):
-{reviewer_feedback or "N/A"}
+---
+EVALUATION DATA:
+Question: {question['question_si']}
+Student Answer: {answer}
+Marking Guide: {json.dumps(guide, ensure_ascii=False)}
+Verification Report: {json.dumps(semantic_report, ensure_ascii=False)}
+Textbook Evidence: {json.dumps(rag_hits, ensure_ascii=False)}
 
-Task:
-1) Perform semantic verification FIRST using the provided verification report.
-2) If semantic_verification.requires_deduction is true, you MUST deduct {semantic_report.get('historical_inaccuracy_penalty', 0)} marks from the 'historical_accuracy' or relevant criterion.
-3) Use specific citations for RAG hits: [RAG rank=<n> source=<path> chunk=<id>].
-4) Return ONLY valid JSON with structure:
+Reviewer Correction Feedback: {reviewer_feedback or "None"}
+
+TASK:
+1. Compare student answer to the GOLD STANDARD and PARTIAL CREDIT examples.
+2. Perform semantic verification using the Verification Report.
+3. Assign marks per criterion and provide a detailed explanation in Sinhala.
+4. Return ONLY valid JSON:
 {{
   "criteria_scores": [
     {{
-      "criterion_id": "qX_cY",
+      "criterion_id": "...",
       "awarded_marks": 0,
       "max_marks": 0,
       "explanation_si": "..."
@@ -211,16 +228,19 @@ Task:
 }}
 """
 
+    # 3. Call the LLM and Handle JSON parsing
     raw = ollama_chat(model="gemma3:12b", prompt=prompt)
     try:
         grading = json.loads(raw)
     except json.JSONDecodeError:
+        # Fallback for common LLM parsing issues
         start = raw.find("{")
         end = raw.rfind("}")
         if start >= 0 and end > start:
             grading = json.loads(raw[start : end + 1])
         else:
             raise ValueError("LLM output is not valid JSON.")
+            
     return {**state, "grading_result": grading}
 
 
