@@ -1,6 +1,6 @@
 # 📜 ඉතිහාස ගුරු (Ithihaasa Guru)
 
-**Ithihaasa Guru** is an advanced AI-driven educational platform developed at **General Sir John Kotelawala Defence University (KDU)** to automate the scoring and feedback process for open-ended questions on **Sri Lankan Colonial History**. By integrating Large Language Models (LLMs) with structured knowledge graphs and textbook retrieval, the system provides students with accurate, evidence-based evaluations in the Sinhala medium.
+**Ithihaasa Guru** is an advanced AI-driven educational platform developed to automate the scoring and feedback process for open-ended questions on **Sri Lankan Colonial History**. By integrating Large Language Models (LLMs) with structured knowledge graphs and textbook retrieval, the system provides students with accurate, evidence-based evaluations in the Sinhala medium.
 
 ---
 
@@ -70,9 +70,6 @@ streamlit run app.py
 ## 🤝 Contributors
 
 * **Sumudu Ishadi Ratnayake** - *Lead Developer & Researcher*
-* **Research Supervisor**: **Dr. Kaneeka Vidanage**, Head of Department (Computer Science), KDU.
-
-Developed as part of research into inclusive digital infrastructure and AI-driven smart education at the **General Sir John Kotelawala Defence University**.
 
 ---
 
