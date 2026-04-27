@@ -7,7 +7,7 @@ import requests
 from langgraph.graph import END, StateGraph
 from rdflib import Graph
 
-from rag_pipeline import retrieve
+from rag_pipeline_advanced import retrieve
 
 
 class ScoreState(TypedDict, total=False):
@@ -69,6 +69,17 @@ def ontology_context_for_question(question_obj: Dict[str, Any], ttl_path: str = 
           FILTER(lang(?eventLabel) = "si")
         }
         """
+    elif "බ්‍රිතාන්‍ය" in qtext or "ඉංග්‍රීසි" in qtext:
+        query = """
+        PREFIX ex: <http://example.org/colonial#>
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        SELECT ?eventLabel ?year WHERE {
+          ?event ex:affected_by ex:British ;
+                 rdfs:label ?eventLabel ;
+                 ex:event_year ?year .
+          FILTER(lang(?eventLabel) = "si")
+        }
+        """
     else:
         query = """
         PREFIX ex: <http://example.org/colonial#>
@@ -92,7 +103,7 @@ def retrieval_agent(state: ScoreState) -> ScoreState:
     question = state["question_obj"]
     keywords = state["keywords"]
     query = f"{question['question_si']} {' '.join(keywords)} {state['student_answer_si']}"
-    rag_hits = retrieve(query=query, out_dir=Path("vector_store"), k=5)
+    rag_hits = retrieve(query=query, out_dir=Path("vector_store_v2"), k=5)
     onto_facts = ontology_context_for_question(question)
     return {
         **state,
@@ -156,6 +167,7 @@ def ollama_chat(model: str, prompt: str, host: str = "http://localhost:11434") -
         "model": model,
         "messages": [{"role": "user", "content": prompt}],
         "stream": False,
+        "format": "json",
         "options": {"temperature": 0.1},
     }
     r = requests.post(url, json=payload, timeout=600)

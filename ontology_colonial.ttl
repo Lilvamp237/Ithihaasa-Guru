@@ -3,11 +3,365 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-# --- Schema Definition ---
-ex:HistoricalEvent a rdfs:Class .
 ex:ColonialPower a rdfs:Class .
-ex:Ruler a rdfs:Class .
+
+ex:HistoricalEvent a rdfs:Class .
+
 ex:Reform a rdfs:Class .
+
+ex:Ruler a rdfs:Class .
+
+ex:1688 a ex:HistoricalEvent ;
+    rdfs:label "1688"@si ;
+    ex:associated_with ex:British .
+
+ex:1795_අගෝස්තු_26 a ex:Entity ;
+    rdfs:label "1795 අගෝස්තු 26"@si ;
+    ex:associated_with ex:British .
+
+ex:1848_ජූලි_මාස a ex:Entity ;
+    rdfs:label "1848 ජූලි මාස"@si .
+
+ex:1850 a ex:Entity ;
+    rdfs:label "1850"@si .
+
+ex:1865 a ex:Entity ;
+    rdfs:label "1865"@si .
+
+ex:1866 a ex:Entity ;
+    rdfs:label "1866"@si .
+
+ex:1871 a ex:Entity ;
+    rdfs:label "1871"@si .
+
+ex:1873 a ex:Entity ;
+    rdfs:label "1873"@si .
+
+ex:1919 a ex:Entity ;
+    rdfs:label "1919"@si .
+
+ex:1947_මැතිවරණය a ex:HistoricalEvent ;
+    rdfs:label "1947 මැතිවරණය"@si .
+
+ex:1956_මැතිවරණය a ex:HistoricalEvent ;
+    rdfs:label "1956 මැතිවරණය"@si .
+
+ex:1960_වර්ෂයේ_මාර්තු_මාසයේ_දී a ex:HistoricalEvent ;
+    rdfs:label "1960 වර්ෂයේ මාර්තු මාසයේ දී"@si .
+
+<http://example.org/colonial#1972_ආණ්ඩුක්‍රම_ව්යාසය> a ex:HistoricalEvent ;
+    rdfs:label "1972 ආණ්ඩුක්‍රම ව්යාසය"@si .
+
+<http://example.org/colonial#1972_ආණ්ඩුක්‍රම_ව්‍යස්ථා> a ex:HistoricalEvent ;
+    rdfs:label "1972 ආණ්ඩුක්‍රම ව්‍යස්ථා"@si .
+
+ex:1972_මැයි_22 a ex:Entity ;
+    rdfs:label "1972 මැයි 22"@si .
+
+<http://example.org/colonial#1972_ව්‍යවස්ථාව> a ex:Entity ;
+    rdfs:label "1972 ව්‍යවස්ථාව"@si .
+
+<http://example.org/colonial#1978_ආණ්ඩුක්‍රම_ව්යාසය> a ex:HistoricalEvent ;
+    rdfs:label "1978 ආණ්ඩුක්‍රම ව්යාසය"@si .
+
+<http://example.org/colonial#1978_ආණ්ඩුක්‍රම_ව්‍යස්ථා> a ex:HistoricalEvent ;
+    rdfs:label "1978 ආණ්ඩුක්‍රම ව්‍යස්ථා"@si .
+
+ex:47_නොමිලේ a ex:Entity ;
+    rdfs:label "47 නොමිලේ"@si .
+
+ex:Alimankada a ex:Entity ;
+    rdfs:label "Alimankada"@si .
+
+ex:ArrivalOfPortuguese1505 a ex:HistoricalEvent ;
+    rdfs:label "පෘතුගීසීන්ගේ පැමිණීම"@si ;
+    ex:affected_by ex:Portuguese ;
+    ex:event_year "1505"^^xsd:gYear .
+
+ex:Attorney_General a ex:Ruler ;
+    rdfs:label "Attorney General"@si .
+
+ex:Bendaranayak a ex:Ruler ;
+    rdfs:label "Bendaranayak"@si .
+
+ex:Buddharanayake a ex:Ruler ;
+    rdfs:label "Buddharanayake"@si .
+
+ex:CP_Silva a ex:Ruler ;
+    rdfs:label "CP. Silva"@si .
+
+ex:CaIG0GI0OD_GIS a ex:Entity ;
+    rdfs:label "CaIG0@GI0OD GIS"@si .
+
+ex:Cabinet a ex:Entity ;
+    rdfs:label "Cabinet"@si .
+
+ex:Ceylon_Socialist_Party a ex:Entity ;
+    rdfs:label "Ceylon Socialist Party"@si .
+
+ex:Chathuraṅga_Mahātha a ex:Ruler ;
+    rdfs:label "Chathuraṅga Mahātha"@si .
+
+ex:Chief_Justice a ex:Ruler ;
+    rdfs:label "Chief Justice"@si .
+
+ex:Coffee a ex:Entity ;
+    rdfs:label "Coffee"@si ;
+    ex:associated_with ex:Portuguese .
+
+ex:Colombo a ex:Entity ;
+    rdfs:label "Colombo"@si .
+
+ex:D_S_Senanayake a ex:Ruler ;
+    rdfs:label "D. S. Senanayake"@si .
+
+ex:Damil_Seneenaiyaka a ex:Ruler ;
+    rdfs:label "Damil Seneenaiyaka"@si .
+
+ex:Department_of_Archaeological_Survey a ex:Entity ;
+    rdfs:label "Department of Archaeological Survey"@si .
+
+ex:Devehadu a ex:Entity ;
+    rdfs:label "Devehadu"@si .
+
+ex:Egypt a ex:Entity ;
+    rdfs:label "Egypt"@si .
+
+ex:English a ex:Entity,
+        ex:Ruler ;
+    rdfs:label "English"@si ;
+    ex:associated_with ex:British .
+
+ex:Federal_Party a ex:Entity ;
+    rdfs:label "Federal Party"@si .
+
+ex:French a ex:Entity ;
+    rdfs:label "French"@si .
+
+ex:Galle a ex:Entity ;
+    rdfs:label "Galle"@si .
+
+ex:Galle_Oya a ex:Entity ;
+    rdfs:label "Galle Oya"@si .
+
+ex:Germany a ex:Entity ;
+    rdfs:label "Germany"@si ;
+    ex:associated_with ex:British .
+
+ex:Horton_Plains a ex:Entity ;
+    rdfs:label "Horton Plains"@si .
+
+ex:James_Taylor a ex:Ruler ;
+    rdfs:label "James Taylor"@si ;
+    ex:associated_with ex:British .
+
+ex:Java a ex:Entity ;
+    rdfs:label "Java"@si .
+
+ex:John_Doyle a ex:Ruler ;
+    rdfs:label "John Doyle"@si .
+
+ex:John_Peebles a ex:Ruler ;
+    rdfs:label "John Peebles"@si ;
+    ex:associated_with ex:British .
+
+ex:Kaitse a ex:Entity ;
+    rdfs:label "Kaitse"@si .
+
+ex:Kalpitiya a ex:Entity ;
+    rdfs:label "Kalpitiya"@si .
+
+ex:Kandy a ex:Entity ;
+    rdfs:label "Kandy"@si .
+
+ex:KandyanConvention1815 a ex:HistoricalEvent ;
+    rdfs:label "උඩරට ගිවිසුම"@si ;
+    ex:affected_by ex:British ;
+    ex:event_year "1815"^^xsd:gYear .
+
+ex:Kirti_Sri_Rajasinghe a ex:Ruler ;
+    rdfs:label "Kirti Sri Rajasinghe"@si .
+
+ex:Kotelawala a ex:Entity ;
+    rdfs:label "Kotelawala"@si .
+
+ex:Lulankaduwa_Vadiya a ex:Entity ;
+    rdfs:label "Lulankaduwa Vadiya"@si .
+
+ex:Madakkalapew a ex:Entity ;
+    rdfs:label "Madakkalapew"@si .
+
+ex:Mahaweli_Development_Corporation a ex:Entity ;
+    rdfs:label "Mahaweli Development Corporation"@si ;
+    ex:associated_with ex:British .
+
+ex:Mannarama a ex:Entity ;
+    rdfs:label "Mannarama"@si .
+
+ex:Matara a ex:Entity ;
+    rdfs:label "Matara"@si .
+
+ex:Meeagama a ex:Entity ;
+    rdfs:label "Meeagama"@si .
+
+ex:Minipitiya a ex:Entity ;
+    rdfs:label "Minipitiya"@si .
+
+ex:Minnepae a ex:Entity ;
+    rdfs:label "Minnepae"@si .
+
+ex:Minneriya a ex:Entity ;
+    rdfs:label "Minneriya"@si .
+
+ex:Missionary_Organizations a ex:Entity ;
+    rdfs:label "Missionary Organizations"@si ;
+    ex:associated_with ex:British .
+
+ex:Netherlands a ex:Entity ;
+    rdfs:label "Netherlands"@si ;
+    ex:associated_with ex:Dutch .
+
+ex:OLN a ex:Entity ;
+    rdfs:label "OLN"@si ;
+    ex:associated_with ex:Portuguese .
+
+ex:OSS_හූෆ්ට් a ex:Ruler ;
+    rdfs:label "OSS හූෆ්ට්"@si ;
+    ex:associated_with ex:Dutch .
+
+ex:O_Rabi_Pasha a ex:Ruler ;
+    rdfs:label "O Rabi Pasha"@si .
+
+ex:Obes_Dahanayake a ex:Ruler ;
+    rdfs:label "Obes Dahanayake"@si .
+
+ex:Oued a ex:Entity ;
+    rdfs:label "Oued"@si .
+
+ex:Paddiyawa a ex:Entity ;
+    rdfs:label "Paddiyawa"@si .
+
+ex:Paranavitana a ex:Ruler ;
+    rdfs:label "Paranavitana"@si .
+
+ex:Parliament a ex:Entity ;
+    rdfs:label "Parliament"@si .
+
+ex:Peduru_Thuduwa a ex:Entity ;
+    rdfs:label "Peduru Thuduwa"@si .
+
+ex:Peoples_Bank a ex:Entity ;
+    rdfs:label "People's Bank"@si .
+
+ex:Perveen a ex:Ruler ;
+    rdfs:label "Perveen"@si .
+
+ex:Philip_Gunawardena a ex:Ruler ;
+    rdfs:label "Philip Gunawardena"@si .
+
+ex:Ponnammbalam_Aruna_Chalaam a ex:Ruler ;
+    rdfs:label "Ponnammbalam Aruna Chalaam"@si .
+
+ex:Postgraduate_Institute_of_Archaeology a ex:Entity ;
+    rdfs:label "Postgraduate Institute of Archaeology"@si .
+
+ex:Premathilake_R a ex:Ruler ;
+    rdfs:label "Premathilake R."@si .
+
+ex:President a ex:Ruler ;
+    rdfs:label "President"@si .
+
+ex:Prime_Minister a ex:Ruler ;
+    rdfs:label "Prime Minister"@si .
+
+ex:Rajanganaya a ex:Entity ;
+    rdfs:label "Rajanganaya"@si .
+
+ex:Robert_Brownrig a ex:Ruler ;
+    rdfs:label "Robert Brownrig"@si .
+
+ex:S_W_சேனනායක a ex:Ruler ;
+    rdfs:label "S. W. சேனනායක"@si .
+
+ex:Saranaankara_Himi a ex:Ruler ;
+    rdfs:label "Saranaankara Himi"@si .
+
+ex:Sinhala_Freedom_Party_SLFP a ex:Entity ;
+    rdfs:label "Sinhala Freedom Party (SLFP)"@si .
+
+ex:Sinhala_National_Congress a ex:Entity ;
+    rdfs:label "Sinhala National Congress"@si .
+
+ex:Sinhala_National_Leaders a ex:Ruler ;
+    rdfs:label "Sinhala National Leaders"@si .
+
+ex:Sinhalese a ex:Entity ;
+    rdfs:label "Sinhalese"@si .
+
+ex:Sinhkona a ex:Entity ;
+    rdfs:label "Sinhkona"@si .
+
+ex:Somadeva_R a ex:Ruler ;
+    rdfs:label "Somadeva R."@si .
+
+ex:Soulbury_Commission a ex:HistoricalEvent ;
+    rdfs:label "Soulbury Commission"@si ;
+    ex:associated_with ex:British .
+
+ex:Sri_Jayasri_Rajasingha a ex:Ruler ;
+    rdfs:label "Sri Jayasri Rajasingha"@si .
+
+ex:Sri_Lanka a ex:Entity ;
+    rdfs:label "Sri Lanka"@si .
+
+ex:Sri_Rajasinghe_Raja a ex:Ruler ;
+    rdfs:label "Sri Rajasinghe Raja"@si .
+
+ex:Sri_Vijaya_Rajasinghe a ex:Ruler ;
+    rdfs:label "Sri Vijaya Rajasinghe"@si .
+
+ex:Sri_Wikrama_Rajasingha a ex:Ruler ;
+    rdfs:label "Sri Wikrama Rajasingha"@si .
+
+ex:Sse_ඩොලර් a ex:Entity ;
+    rdfs:label "Sse ඩොලර්"@si ;
+    ex:associated_with ex:Dutch .
+
+ex:Stockholm a ex:Entity ;
+    rdfs:label "Stockholm"@si .
+
+ex:Supreme_Court a ex:Entity ;
+    rdfs:label "Supreme Court"@si .
+
+ex:Tea a ex:HistoricalEvent ;
+    rdfs:label "Tea"@si .
+
+ex:Trincomalee a ex:Entity ;
+    rdfs:label "Trincomalee"@si .
+
+ex:Uda_Walave_Basin a ex:Entity ;
+    rdfs:label "Uda Walave Basin"@si .
+
+ex:VOC_Vereenigde_Oostindische_Compagnie a ex:Entity ;
+    rdfs:label "VOC (Vereenigde Oostindische Compagnie)"@si ;
+    ex:associated_with ex:Dutch .
+
+ex:Victoria_Reservoir a ex:Entity ;
+    rdfs:label "Victoria Reservoir"@si ;
+    ex:associated_with ex:British .
+
+ex:VijayabaKollaya a ex:HistoricalEvent ;
+    rdfs:label "විජයබා කොල්ලය"@si ;
+    ex:affected_by ex:Portuguese ;
+    ex:event_year "1521"^^xsd:gYear .
+
+ex:WesterwoldTreaty1638 a ex:HistoricalEvent ;
+    rdfs:label "වෙස්ටර්වෝල්ඩ් ගිවිසුම"@si ;
+    ex:affected_by ex:Dutch ;
+    ex:event_year "1638"^^xsd:gYear .
+
+ex:Yapana a ex:Entity ;
+    rdfs:label "Yapana"@si .
 
 ex:affected_by a rdf:Property ;
     rdfs:domain ex:HistoricalEvent ;
@@ -17,76 +371,1012 @@ ex:associated_with a rdf:Property ;
     rdfs:domain ex:Ruler ;
     rdfs:range ex:ColonialPower .
 
-ex:implemented_by a rdf:Property ;
-    rdfs:domain ex:Reform ;
-    rdfs:range ex:ColonialPower .
-
 ex:event_year a rdf:Property ;
     rdfs:domain ex:HistoricalEvent ;
     rdfs:range xsd:gYear .
 
-# --- Colonial Powers ---
-ex:Portuguese a ex:ColonialPower ;
-    rdfs:label "Portuguese"@en ;
-    rdfs:label "පෘතුගීසි"@si .
+ex:implemented_by a rdf:Property ;
+    rdfs:domain ex:Reform ;
+    rdfs:range ex:ColonialPower .
 
-ex:Dutch a ex:ColonialPower ;
-    rdfs:label "Dutch"@en ;
-    rdfs:label "ලන්දේසි"@si .
+ex:අගමැති a ex:Ruler ;
+    rdfs:label "අගමැති"@si .
 
-ex:British a ex:ColonialPower ;
-    rdfs:label "British"@en ;
-    rdfs:label "බ්‍රිතාන්‍ය"@si .
+ex:අගමැතිවරයා a ex:Ruler ;
+    rdfs:label "අගමැතිවරයා"@si .
 
-# --- Portuguese Period (extracted from gr-8 data) ---
-ex:Arrival1505 a ex:HistoricalEvent ;
-    rdfs:label "පෘතුගීසීන්ගේ පැමිණීම"@si ;
-    ex:affected_by ex:Portuguese ;
-    ex:event_year "1505"^^xsd:gYear .
-
-ex:VijayabaKollaya a ex:HistoricalEvent ;
-    rdfs:label "විජයබා කොල්ලය"@si ;
-    ex:affected_by ex:Portuguese ;
-    ex:event_year "1521"^^xsd:gYear .
-
-ex:DonJuanDharmapala a ex:Ruler ;
-    rdfs:label "දොන් ජුවන් ධර්මපාල"@si ;
+ex:අගරාණ්ඩුකාරවරයා a ex:Ruler ;
+    rdfs:label "අගරාණ්ඩුකාරවරයා"@si ;
     ex:associated_with ex:Portuguese .
 
-ex:Mayadunne a ex:Ruler ;
-    rdfs:label "මායාදුන්නේ"@si ;
+ex:අග්_රවිනිශ්චයකාරවරයා_Chief_Justice a ex:Ruler ;
+    rdfs:label "අග් රවිනිශ්චයකාරවරයා (Chief Justice)"@si .
+
+ex:අග්නිදිග_ආසියාව a ex:Entity ;
+    rdfs:label "අග්නිදිග ආසියාව"@si .
+
+<http://example.org/colonial#අග්‍ර_රවිනිශ්චයකාරයා> a ex:Ruler ;
+    rdfs:label "අග්‍ර රවිනිශ්චයකාරයා"@si .
+
+ex:අධිකරණ_ඇමතිවරයා a ex:Ruler ;
+    rdfs:label "අධිකරණ ඇමතිවරයා"@si .
+
+ex:අධිකරණ_සේවා_උපදේශක_මණ්ඩලය a ex:Entity ;
+    rdfs:label "අධිකරණ සේවා උපදේශක මණ්ඩලය"@si .
+
+ex:අධිකරණ_සේවා_කොමිසම a ex:Entity ;
+    rdfs:label "අධිකරණ සේවා කොමිසම"@si .
+
+ex:අධිකරණ_සේවා_විනය_මණ්ඩලය a ex:Entity ;
+    rdfs:label "අධිකරණ සේවා විනය මණ්ඩලය"@si .
+
+ex:අපනයන_ආර්ථික_කර්මාන්ත a ex:Entity ;
+    rdfs:label "අපනයන ආර්ථික කර්මාන්ත"@si .
+
+ex:අභියාචනාධිකරණය a ex:Entity ;
+    rdfs:label "අභියාචනාධිකරණය"@si .
+
+ex:අභියාචනාධිකරණය_Appellate_Court a ex:Entity ;
+    rdfs:label "අභියාචනාධිකරණය (Appellate Court)"@si .
+
+ex:අමාත්ය_මණ්ඩලය a ex:Entity ;
+    rdfs:label "අමාත්ය මණ්ඩලය"@si .
+
+ex:අමිරතලිංගමි_මහතා a ex:Ruler ;
+    rdfs:label "අමිරතලිංගමි මහතා"@si .
+
+ex:අයි_එම්_ආර්_ඒඊරියගොල්ල a ex:Ruler ;
+    rdfs:label "අයි. එම්. ආර්. ඒ.ඊරියගොල්ල"@si .
+
+<http://example.org/colonial#ආණ්ඩු_පක්ෂයේ_මන්ත්‍රීවරුන්> a ex:Ruler ;
+    rdfs:label "ආණ්ඩු පක්ෂයේ මන්ත්‍රීවරුන්"@si .
+
+<http://example.org/colonial#ආණ්ඩුක්‍රම_ව්‍යවස්ථාව> a ex:Entity ;
+    rdfs:label "ආණ්ඩුක්‍රම ව්‍යවස්ථාව"@si .
+
+ex:ආණ්ඩුව a ex:Entity ;
+    rdfs:label "ආණ්ඩුව"@si .
+
+ex:ආරුමුග_Modes a ex:Ruler ;
+    rdfs:label "ආරුමුග Modes"@si .
+
+ex:ආරුමුග_නාවලර්තුමා a ex:Ruler ;
+    rdfs:label "ආරුමුග නාවලර්තුමා"@si .
+
+ex:ඇඟළුම්_කර්මාන්තය a ex:Entity ;
+    rdfs:label "ඇඟළුම් කර්මාන්තය"@si .
+
+ex:ඉංග්_රීසීන් a ex:Entity ;
+    rdfs:label "ඉංග් රීසීන්"@si ;
+    ex:associated_with ex:British .
+
+ex:ඉංග්_රීසීහු a ex:Entity ;
+    rdfs:label "ඉංග් රීසීහු"@si ;
+    ex:associated_with ex:British .
+
+<http://example.org/colonial#ඉංග්‍රීසි_ආණ්ඩුකාරවරයා> a ex:Ruler ;
+    rdfs:label "ඉංග්‍රීසි ආණ්ඩුකාරවරයා"@si ;
+    ex:associated_with ex:British .
+
+<http://example.org/colonial#ඉංග්‍රීසි_රජ> a ex:Entity ;
+    rdfs:label "ඉංග්‍රීසි රජ"@si ;
+    ex:associated_with ex:British .
+
+<http://example.org/colonial#ඉංග්‍රීසි_රජය> a ex:Entity,
+        ex:Ruler ;
+    rdfs:label "ඉංග්‍රීසි රජය"@si ;
+    ex:associated_with ex:British .
+
+<http://example.org/colonial#ඉංග්‍රීසීන්> a ex:Ruler ;
+    rdfs:label "ඉංග්‍රීසීන්"@si ;
+    ex:associated_with ex:British .
+
+ex:ඉංගීසීන් a ex:Ruler ;
+    rdfs:label "ඉංගීසීන්"@si ;
+    ex:associated_with ex:British .
+
+ex:ඉතිහාසය a ex:Entity ;
+    rdfs:label "ඉතිහාසය"@si ;
+    ex:associated_with ex:British .
+
+ex:ඉන්ඩිගෝ a ex:Entity ;
+    rdfs:label "ඉන්ඩිගෝ"@si .
+
+ex:ඉන්දියානු_සාගරය a ex:Entity ;
+    rdfs:label "ඉන්දියානු සාගරය"@si .
+
+ex:ඉරණමඩු a ex:Entity ;
+    rdfs:label "ඉරණමඩු"@si .
+
+ex:උක a ex:Entity ;
+    rdfs:label "උක"@si .
+
+ex:උගත්_ලාංකිකයන් a ex:Ruler ;
+    rdfs:label "උගත් ලාංකිකයන්"@si .
+
+ex:උඩගබඩා_නිලමේ a ex:Ruler ;
+    rdfs:label "උඩගබඩා නිලමේ"@si .
+
+ex:උඩරට a ex:Entity ;
+    rdfs:label "උඩරට"@si .
+
+ex:උඩරට_ගිවිසුම a ex:HistoricalEvent ;
+    rdfs:label "උඩරට ගිවිසුම"@si ;
+    ex:associated_with ex:British .
+
+ex:උඩරට_යුධය a ex:HistoricalEvent ;
+    rdfs:label "උඩරට යුධය"@si .
+
+ex:උඩරට_රජු a ex:Ruler ;
+    rdfs:label "උඩරට රජු"@si .
+
+ex:උඩරට_රාජධානිය a ex:Entity ;
+    rdfs:label "උඩරට රාජධානිය"@si .
+
+ex:උඩරැටියන් a ex:Entity ;
+    rdfs:label "උඩරැටියන්"@si .
+
+ex:උදන්විට_වාදය a ex:HistoricalEvent ;
+    rdfs:label "උදන්විට වාදය"@si .
+
+ex:උනිච්චයි a ex:Entity ;
+    rdfs:label "උනිච්චයි"@si .
+
+ex:ඌව_වෙල්ලස්ස_සටන්කරුවන් a ex:Ruler ;
+    rdfs:label "ඌව වෙල්ලස්ස සටන්කරුවන්"@si .
+
+ex:එංගලන්තයේ_කිව්_මාලිගාව a ex:Entity ;
+    rdfs:label "එංගලන්තයේ කිව් මාලිගාව"@si ;
+    ex:associated_with ex:British .
+
+ex:එක්සත්_ජාතික_පක්ෂය a ex:Entity ;
+    rdfs:label "එක්සත් ජාතික පක්ෂය"@si .
+
+ex:එනසාල් a ex:Entity ;
+    rdfs:label "එනසාල්"@si .
+
+ex:එමර්සන්_ටෙනන්ට් a ex:Ruler ;
+    rdfs:label "එමර්සන් ටෙනන්ට්"@si ;
+    ex:associated_with ex:British .
+
+ex:ඒබීඑස් a ex:Entity ;
+    rdfs:label "ඒබීඑස්"@si ;
+    ex:associated_with ex:British .
+
+ex:ඕලන්ද a ex:Entity ;
+    rdfs:label "ඕලන්ද"@si ;
+    ex:associated_with ex:Dutch .
+
+ex:ඕලන්දය a ex:Entity ;
+    rdfs:label "ඕලන්දය"@si ;
+    ex:associated_with ex:Dutch .
+
+ex:ඕල්කතුමා a ex:Ruler ;
+    rdfs:label "ඕල්කතුමා"@si .
+
+ex:කනකපුල්ලේ_ලියන්නන් a ex:Entity ;
+    rdfs:label "කනකපුල්ලේ ලියන්නන්"@si .
+
+ex:කන්තලේ a ex:Entity ;
+    rdfs:label "කන්තලේ"@si .
+
+ex:කන්තලේ_වැව a ex:Entity ;
+    rdfs:label "කන්තලේ වැව"@si .
+
+ex:කාර්මික_ජනපදය a ex:HistoricalEvent ;
+    rdfs:label "කාර්මික ජනපදය"@si .
+
+ex:කැප්පෙට්ටිපොළ a ex:Ruler ;
+    rdfs:label "කැප්පෙට්ටිපොළ"@si .
+
+ex:කැප්පෙටිපොළ_නිලමේ a ex:Ruler ;
+    rdfs:label "කැප්පෙටිපොළ නිලමේ"@si .
+
+ex:කැබිනට්_මණ්ඩලය a ex:Entity ;
+    rdfs:label "කැබිනට් මණ්ඩලය"@si .
+
+ex:කිවුලෙගෙදර_මොහොටටාල a ex:Ruler ;
+    rdfs:label "කිවුලෙගෙදර මොහොටටාල"@si .
+
+ex:කිස්තුධර්ම a ex:Entity ;
+    rdfs:label "කිස්තුධර්ම"@si .
+
+ex:කුණ්ඩසාල a ex:Entity ;
+    rdfs:label "කුණ්ඩසාල"@si .
+
+ex:කුරුණෑගල a ex:Entity ;
+    rdfs:label "කුරුණෑගල"@si .
+
+ex:කුරුඳු a ex:Entity ;
+    rdfs:label "කුරුඳු"@si .
+
+ex:කෘෂිකර්මය a ex:HistoricalEvent ;
+    rdfs:label "කෘෂිකර්මය"@si .
+
+ex:කෘෂිකර්මාන්තය a ex:HistoricalEvent ;
+    rdfs:label "කෘෂිකර්මාන්තය"@si .
+
+ex:කේම්බ್ರಿජ්_විශ්ව_විද්යාලය a ex:Entity ;
+    rdfs:label "කේම්බ್ರಿජ් විශ්ව විද්යාලය"@si ;
+    ex:associated_with ex:British .
+
+ex:කොකෝවා_වගාව a ex:Entity ;
+    rdfs:label " කොකෝවා වගාව"@si .
+
+ex:කොත්මලේ_ජලාශය a ex:Entity ;
+    rdfs:label "කොත්මලේ ජලාශය"@si .
+
+ex:කොමාන්ඩරි a ex:Entity ;
+    rdfs:label " කොමාන්ඩරි"@si ;
+    ex:associated_with ex:Dutch .
+
+ex:කොහුකුඹුරේ_රාල a ex:Ruler ;
+    rdfs:label "කොහුකුඹුරේ රාල"@si .
+
+ex:කොළඹ a ex:Entity ;
+    rdfs:label "කොළඹ"@si .
+
+ex:කොළඹ_පරම_විඥානාර්ථ_සමාගම a ex:Entity ;
+    rdfs:label "කොළඹ පරම විඥානාර්ථ සමාගම"@si .
+
+ex:කෝපි a ex:Entity ;
+    rdfs:label "කෝපි"@si .
+
+ex:කෝරල a ex:Entity ;
+    rdfs:label "කෝරල"@si .
+
+ex:කෝරල_පත්තුවල a ex:Entity ;
+    rdfs:label "කෝරල පත්තුවල"@si .
+
+ex:කෝල්බෲක් a ex:Ruler ;
+    rdfs:label "කෝල්බෲක්"@si ;
+    ex:associated_with ex:British .
+
+<http://example.org/colonial#කෝල්බෲක්_ප්‍රතිසංස්කරණය> a ex:HistoricalEvent ;
+    rdfs:label "කෝල්බෲක් ප්‍රතිසංස්කරණය"@si ;
+    ex:associated_with ex:British .
+
+ex:කෝල්බෲක්_යොජනා a ex:HistoricalEvent ;
+    rdfs:label "කෝල්බෲක් යොජනා"@si ;
+    ex:associated_with ex:British .
+
+ex:ගම්_සභා a ex:Entity ;
+    rdfs:label "ගම් සභා"@si .
+
+ex:ගම්_සභාව a ex:Entity ;
+    rdfs:label "ගම් සභාව"@si .
+
+ex:ගම්පහ a ex:Entity ;
+    rdfs:label "ගම්පහ"@si .
+
+ex:ගම්පොළ_වාදය a ex:HistoricalEvent ;
+    rdfs:label "ගම්පොළ වාදය"@si .
+
+ex:ගම්මිරිස් a ex:Entity ;
+    rdfs:label "ගම්මිරිස්"@si .
+
+ex:ගල්_ඔය a ex:Entity ;
+    rdfs:label "ගල් ඔය"@si .
+
+ex:ගිරිතලේ a ex:Entity ;
+    rdfs:label "ගිරිතලේ"@si .
+
+ex:ගිහි_පැවිදි_දෙපක්ෂය a ex:Entity ;
+    rdfs:label "ගිහි පැවිදි දෙපක්ෂය"@si .
+
+ex:ගුණානන්ද_හිමි a ex:Ruler ;
+    rdfs:label "ගුණානන්ද හිමි"@si .
+
+<http://example.org/colonial#ගොංගංලේගොඩ_බණ්ඩා_ශ්‍රී_වික්‍රම_සර්වසිද්ධි> a ex:HistoricalEvent ;
+    rdfs:label "ගොංගංලේගොඩ බණ්ඩා ශ්‍රී වික්‍රම සර්වසිද්ධි"@si .
+
+ex:ගොවි_ජනතාව a ex:Entity ;
+    rdfs:label "ගොවි ජනතාව"@si .
+
+ex:චචිනි a ex:Entity ;
+    rdfs:label "චචිනි"@si .
+
+ex:ඡන්ද_බලයෙන්_නියෝජිතයන් a ex:Ruler ;
+    rdfs:label "ඡන්ද බලයෙන් නියෝජිතයන්"@si .
+
+ex:ජනයා a ex:Ruler ;
+    rdfs:label "ජනයා"@si .
+
+ex:ජනාධිපති a ex:Ruler ;
+    rdfs:label "ජනාධිපති"@si .
+
+ex:ජනාධිපතිධුරය a ex:Entity ;
+    rdfs:label "ජනාධිපතිධුරය"@si .
+
+ex:ජනාධිපතිවරයා_President a ex:Ruler ;
+    rdfs:label "ජනාධිපතිවරයා (President)"@si .
+
+ex:ජයා_මහතා a ex:Ruler ;
+    rdfs:label "ජයා මහතා"@si .
+
+ex:ජොර්ජ්_වෝල් a ex:Ruler ;
+    rdfs:label "ජොර්ජ් වෝල්"@si .
+
+ex:ටොරින්ටන්_ආණ්ඩුකාරවරයා a ex:Ruler ;
+    rdfs:label "ටොරින්ටන් ආණ්ඩුකාරවරයා"@si ;
+    ex:associated_with ex:British .
+
+ex:ටොරින්ටන්_සාමිවරයා a ex:Ruler ;
+    rdfs:label "ටොරින්ටන් සාමිවරයා"@si .
+
+ex:ඩඩ්ලි_සේනානායක a ex:Ruler ;
+    rdfs:label "ඩඩ්ලි සේනානායක"@si .
+
+ex:ඩී_එස්_සේනානායක a ex:Ruler ;
+    rdfs:label "ඩී. එස්. සේනානායක"@si .
+
+<http://example.org/colonial#ඩොනමෝර්_ආණ්ඩුක්‍රම_වරයා> a ex:HistoricalEvent ;
+    rdfs:label "ඩොනමෝර් ආණ්ඩුක්‍රම වරයා"@si ;
+    ex:associated_with ex:British .
+
+ex:ත්_රිකුණාමලය a ex:Entity ;
+    rdfs:label "ත් රිකුණාමලය"@si .
+
+ex:ත්_රිකුණාමලයේ a ex:Entity ;
+    rdfs:label "ත් රිකුණාමලයේ"@si ;
+    ex:associated_with ex:British .
+
+ex:තේ a ex:Entity ;
+    rdfs:label "තේ"@si .
+
+ex:තේ_කොමිෂන් a ex:Entity ;
+    rdfs:label "තේ කොමිෂන්"@si .
+
+ex:දකුණු_ඉන්දියානු_කම්කරුවන් a ex:Ruler ;
+    rdfs:label "දකුණු ඉන්දියානු කම්කරුවන්"@si .
+
+ex:දඹුල්ල a ex:Entity ;
+    rdfs:label "දඹුල්ල"@si .
+
+ex:දලෙශිලිකන්දරාව a ex:Entity ;
+    rdfs:label "දලෙශිලිකන්දරාව"@si .
+
+ex:දවිවිධ_සංගමය a ex:Entity ;
+    rdfs:label "දවිවිධ සංගමය"@si .
+
+ex:දළදා_වහන්සේ a ex:Ruler ;
+    rdfs:label "දළදා වහන්සේ"@si .
+
+ex:දිසා_අධිකරණය_District_Court a ex:Entity ;
+    rdfs:label "දිසා අධිකරණය (District Court)"@si .
+
+ex:දිසාවනිය a ex:Entity ;
+    rdfs:label "දිසාවනිය"@si ;
+    ex:associated_with ex:Dutch .
+
+ex:දුම්බර_හේවාහැට a ex:Entity ;
+    rdfs:label "දුම්බර හේවාහැට"@si .
+
+ex:දුල්පිටිය a ex:Entity ;
+    rdfs:label "දුල්පිටිය"@si .
+
+ex:දෙමළ a ex:Entity ;
+    rdfs:label "දෙමළ"@si .
+
+ex:දෙමළ_භාෂාව a ex:Entity ;
+    rdfs:label "දෙමළ භාෂාව"@si .
+
+ex:දෙවන_රාජසිංහ_රජු a ex:Ruler ;
+    rdfs:label "දෙවන රාජසිංහ රජු"@si .
+
+ex:දේවහූව a ex:Entity ;
+    rdfs:label "දේවහූව"@si .
+
+ex:දේශීය_නායකයන් a ex:Ruler ;
+    rdfs:label "දේශීය නායකයන්"@si .
+
+ex:දොරේසාමි_උඩරට a ex:Entity ;
+    rdfs:label "දොරේසාමි උඩරට"@si .
+
+ex:ධනවතුන් a ex:Entity ;
+    rdfs:label "ධනවතුන්"@si .
+
+ex:ධර්මපාල_කුමරු a ex:Ruler ;
+    rdfs:label "ධර්මපාල කුමරු"@si .
+
+ex:නාරම්මල a ex:Entity ;
+    rdfs:label "නාරම්මල"@si .
+
+ex:නාවුක_හෙන්රි a ex:Ruler ;
+    rdfs:label "නාවුක හෙන්රි"@si ;
     ex:associated_with ex:Portuguese .
 
-# --- Dutch Period ---
-ex:WesterwoldTreaty1638 a ex:HistoricalEvent ;
-    rdfs:label "වෙස්ටර්වෝල්ඩ් ගිවිසුම"@si ;
-    ex:affected_by ex:Dutch ;
-    ex:event_year "1638"^^xsd:gYear .
-
-ex:DutchTakeover1658 a ex:HistoricalEvent ;
-    rdfs:label "ලන්දේසි වෙරළබඩ පාලනය ඇරඹීම"@si ;
-    ex:affected_by ex:Dutch ;
-    ex:event_year "1658"^^xsd:gYear .
-
-# --- British Period ---
-ex:KandyanConvention1815 a ex:HistoricalEvent ;
-    rdfs:label "උඩරට ගිවිසුම (1815)"@si ;
-    ex:affected_by ex:British ;
-    ex:event_year "1815"^^xsd:gYear .
-
-ex:UvaWellassaRebellion1818 a ex:HistoricalEvent ;
-    rdfs:label "ඌව වෙල්ලස්ස කැරැල්ල"@si ;
-    ex:affected_by ex:British ;
-    ex:event_year "1818"^^xsd:gYear .
-
-ex:ColebrookeCameron1833 a ex:Reform ;
-    rdfs:label "කොල්බෘක්-කැමරන් ප්‍රතිසංස්කරණ"@si ;
-    ex:implemented_by ex:British .
-
-ex:RobertBrownrigg a ex:Ruler ;
-    rdfs:label "රොබට් බ්‍රවුන්රිග්"@si ;
+ex:නීතිය a ex:Entity ;
+    rdfs:label "නීතිය"@si ;
     ex:associated_with ex:British .
 
-ex:EdwardBarnes a ex:Ruler ;
-    rdfs:label "එඩ්වඩ් බාර්න්ස්"@si ;
+ex:නුවර_කලාවිය a ex:Entity ;
+    rdfs:label "නුවර කලාවිය"@si .
+
+ex:ප_පිළිමතලව්වේ a ex:Ruler ;
+    rdfs:label "ප පිළිමතලව්වේ"@si .
+
+ex:පංචමහා_වාද a ex:HistoricalEvent ;
+    rdfs:label "පංචමහා වාද"@si .
+
+ex:පර්ථම_කාර්මික_ජනපදය a ex:HistoricalEvent ;
+    rdfs:label "පර්ථම කාර්මික ජනපදය"@si .
+
+ex:පවුල්_අධිකරණය_Family_Court a ex:Entity ;
+    rdfs:label "පවුල් අධිකරණය (Family Court)"@si .
+
+ex:පහතරැටියෝ a ex:Entity ;
+    rdfs:label "පහතරැටියෝ"@si .
+
+ex:පළමු_පාර්ලිමේන්තු_මැතිවරණය a ex:HistoricalEvent ;
+    rdfs:label "පළමු පාර්ලිමේන්තු මැතිවරණය"@si .
+
+ex:ප්_රංශය a ex:Entity ;
+    rdfs:label "ප් රංශය"@si .
+
+ex:ප්_රාථමික_අධිකරණය_Prathmatic_Adhikaran a ex:Entity ;
+    rdfs:label "ප් රාථමික අධිකරණය (Prathmatic Adhikaran)"@si .
+
+ex:පානදුරා_වාදය a ex:HistoricalEvent ;
+    rdfs:label "පානදුරා වාදය"@si .
+
+ex:පානියන්කඩවල a ex:Entity ;
+    rdfs:label "පානියන්කඩවල"@si .
+
+ex:පානියන්කඩ්වල a ex:Entity ;
+    rdfs:label "පානියන්කඩ්වල"@si .
+
+ex:පාරබද්ද a ex:HistoricalEvent ;
+    rdfs:label "පාරබද්ද"@si ;
     ex:associated_with ex:British .
+
+ex:පාර්ලිමේන්තු_කොමසාරිස්_ඔම්බුඩ්ස්මන් a ex:Ruler ;
+    rdfs:label "පාර්ලිමේන්තු කොමසාරිස් (ඔම්බුඩ්ස්මන්)"@si .
+
+ex:පාර්ලිමේන්තුව a ex:Entity ;
+    rdfs:label "පාර්ලිමේන්තුව"@si .
+
+ex:පිලිප්_ගුණවර්ධන a ex:Ruler ;
+    rdfs:label "පිලිප් ගුණවර්ධන"@si .
+
+ex:පූජකවරු a ex:Ruler ;
+    rdfs:label "පූජකවරු"@si .
+
+ex:පූජ්_ය_මිගෙට්ටුවත්තේ a ex:Entity ;
+    rdfs:label "පූජ් ය මිගෙට්ටුවත්තේ"@si .
+
+ex:පූජ්_ය_මිගෙට්ටුවත්තේ_ගුණානන්ද_හිමියන් a ex:Ruler ;
+    rdfs:label "පූජ් ය මිගෙට්ටුවත්තේ ගුණානන්ද හිමියන්"@si .
+
+ex:පෘතුගීසි_ආණ්ඩුව a ex:Entity ;
+    rdfs:label "පෘතුගීසි ආණ්ඩුව"@si ;
+    ex:associated_with ex:Portuguese .
+
+ex:පෘතුගීසීන් a ex:Entity ;
+    rdfs:label "පෘතුගීසීන්"@si ;
+    ex:associated_with ex:Portuguese .
+
+ex:පෙරාක්_රම a ex:Entity ;
+    rdfs:label "පෙරාක් රම"@si .
+
+ex:පොල් a ex:Entity ;
+    rdfs:label "පොල්"@si .
+
+<http://example.org/colonial#පෞද්ගලික_ව්‍යවස්ථාපිතයන්> a ex:Ruler ;
+    rdfs:label "පෞද්ගලික ව්‍යවස්ථාපිතයන්"@si ;
+    ex:associated_with ex:Dutch .
+
+ex:බටහිර_සංස්කෘතික_අංග a ex:Entity ;
+    rdfs:label "බටහිර සංස්කෘතික අංග"@si ;
+    ex:associated_with ex:Portuguese .
+
+ex:බත්මැඩිල්ල a ex:Entity ;
+    rdfs:label "බත්මැඩිල්ල"@si .
+
+ex:බද්දෙගම_වාදය a ex:HistoricalEvent ;
+    rdfs:label "බද්දෙගම වාදය"@si .
+
+ex:බයිබලය a ex:Entity ;
+    rdfs:label "බයිබලය"@si .
+
+ex:බර්ගර් a ex:Entity ;
+    rdfs:label "බර්ගර්"@si ;
+    ex:associated_with ex:Dutch .
+
+ex:බලකොටුව a ex:Entity ;
+    rdfs:label "බලකොටුව"@si ;
+    ex:associated_with ex:British .
+
+<http://example.org/colonial#බහු_කාර්ය_යෝජනා_ක්‍රමය> a ex:Entity ;
+    rdfs:label "බහු කාර්ය යෝජනා ක්‍රමය"@si .
+
+<http://example.org/colonial#බ්‍රිතාන්_ත_රජය> a ex:Ruler ;
+    rdfs:label "බ්‍රිතාන් ත රජය"@si ;
+    ex:associated_with ex:British .
+
+<http://example.org/colonial#බ්‍රිතාන්_ය_ආණ්ඩුව> a ex:Entity ;
+    rdfs:label "බ්‍රිතාන් ය ආණ්ඩුව"@si ;
+    ex:associated_with ex:British .
+
+<http://example.org/colonial#බ්‍රිතාන්_ය_පාලනය> a ex:Entity ;
+    rdfs:label "බ්‍රිතාන් ය පාලනය"@si ;
+    ex:associated_with ex:British .
+
+<http://example.org/colonial#බ්‍රිතාන්_ය_රජය> a ex:Entity ;
+    rdfs:label "බ්‍රිතාන් ය රජය"@si .
+
+<http://example.org/colonial#බ්‍රිතාන්_යයන්> a ex:Entity ;
+    rdfs:label "බ්‍රිතාන් යයන්"@si ;
+    ex:associated_with ex:British .
+
+<http://example.org/colonial#බ්‍රිතාන්තය> a ex:Entity ;
+    rdfs:label "බ්‍රිතාන්තය"@si ;
+    ex:associated_with ex:British .
+
+<http://example.org/colonial#බ්‍රිතාන්‍ය> a ex:Entity ;
+    rdfs:label "බ්‍රිතාන්‍ය"@si ;
+    ex:associated_with ex:British .
+
+<http://example.org/colonial#බ්‍රිතාන්‍යයන්> a ex:Ruler ;
+    rdfs:label "බ්‍රිතාන්‍යයන්"@si ;
+    ex:associated_with ex:British .
+
+ex:බුද්ධාගම a ex:Entity ;
+    rdfs:label "බුද්ධාගම"@si .
+
+ex:බුදු_දහම a ex:Entity ;
+    rdfs:label "බුදු දහම"@si .
+
+ex:බූටෑවේ_රටේ_රාල a ex:Ruler ;
+    rdfs:label "බූටෑවේ රටේ රාල"@si .
+
+ex:බෙංගාල_බොක්කා a ex:Entity ;
+    rdfs:label "බෙංගාල බොක්කා"@si .
+
+ex:බේලි_මහතා a ex:Ruler ;
+    rdfs:label "බේලි මහතා"@si .
+
+ex:බෞද්ධ_කොඩිය a ex:Entity ;
+    rdfs:label "බෞද්ධ කොඩිය"@si .
+
+ex:බෞද්ධ_පාසල් a ex:Entity ;
+    rdfs:label "බෞද්ධ පාසල්"@si .
+
+ex:බෞද්ධ_පාසල්_අරමුදල a ex:Entity ;
+    rdfs:label "බෞද්ධ පාසල් අරමුදල"@si .
+
+ex:භාෂා_පෙරමුණ a ex:Entity ;
+    rdfs:label "භාෂා පෙරමුණ"@si .
+
+ex:මගුල්_මඩුව a ex:Entity ;
+    rdfs:label "මගුල් මඩුව"@si .
+
+ex:මඩකලපුව a ex:Entity ;
+    rdfs:label "මඩකලපුව"@si .
+
+ex:මඩුගල්ලේ_දිසාව a ex:Ruler ;
+    rdfs:label "මඩුගල්ලේ දිසාව"@si .
+
+ex:මද්යසාර a ex:Entity ;
+    rdfs:label "මද්යසාර"@si .
+
+ex:මයෝරාළවරුන් a ex:Entity ;
+    rdfs:label "මයෝරාළවරුන්"@si .
+
+ex:මල්බෙරි a ex:Entity ;
+    rdfs:label "මල්බෙරි"@si .
+
+ex:මහජන_එක්සත්_පෙරමුණ a ex:Entity ;
+    rdfs:label "මහජන එක්සත් පෙරමුණ"@si .
+
+<http://example.org/colonial#මහජන_මන්ත්‍රි_මණ්ඩලය> a ex:Entity ;
+    rdfs:label "මහජන මන්ත්‍රි මණ්ඩලය"@si .
+
+<http://example.org/colonial#මහජන_මන්ත්‍රී_මණ්ඩලය> a ex:Entity ;
+    rdfs:label "මහජන මන්ත්‍රී මණ්ඩලය"@si .
+
+ex:මහනුවර_නගරය a ex:Entity ;
+    rdfs:label "මහනුවර නගරය"@si .
+
+ex:මහනුවර_රාජ_සභා_ගොඩනැගිල්ල a ex:Entity ;
+    rdfs:label "මහනුවර රාජ සභා ගොඩනැගිල්ල"@si .
+
+ex:මහවැලි_ගඟ a ex:Entity ;
+    rdfs:label "මහවැලි ගඟ"@si .
+
+ex:මහවැලි_සංවර්ධන_යෝජනා_ක්ෂතරය a ex:Entity ;
+    rdfs:label "මහවැලි සංවර්ධන යෝජනා ක්ෂතරය"@si .
+
+ex:මහාධිකරණය_High_Court a ex:Entity ;
+    rdfs:label "මහාධිකරණය (High Court)"@si .
+
+ex:මහේසත්_රාත්_අධිකරණය_Mahasath_Rath_Adhikaran a ex:Entity ;
+    rdfs:label "මහේසත් රාත් අධිකරණය (Mahasath Rath Adhikaran)"@si .
+
+ex:මහේස්ත්රාත්වරයාධිකරණ a ex:Entity ;
+    rdfs:label "මහේස්ත්රාත්වරයාධිකරණ"@si .
+
+ex:මාතර a ex:Entity ;
+    rdfs:label "මාතර"@si .
+
+ex:මාතලේ a ex:Entity ;
+    rdfs:label "මාතලේ"@si .
+
+ex:මාතලේ_පර්යේෂණ_ආයතනය a ex:Entity ;
+    rdfs:label "මාතලේ පර්යේෂණ ආයතනය"@si .
+
+ex:මායාදුන්නේ_රජු a ex:Ruler ;
+    rdfs:label "මායාදුන්නේ රජු"@si .
+
+ex:මාර්ෂල්_ලෝ a ex:Ruler ;
+    rdfs:label "මාර්ෂල් ලෝ"@si ;
+    ex:associated_with ex:British .
+
+ex:මාවෝ_බණ්ඩාරනායක a ex:Ruler ;
+    rdfs:label "මාවෝ බණ්ඩාරනායක"@si .
+
+ex:මැක්ඩෝවල්_සෙනෙවියා a ex:Ruler ;
+    rdfs:label "මැක්ඩෝවල් සෙනෙවියා"@si ;
+    ex:associated_with ex:Dutch .
+
+ex:මැතිවරණ_කොට්ඨාස_බෙදා_වෙන්_කරනු_ලැබුවාය a ex:HistoricalEvent ;
+    rdfs:label "මැතිවරණ කොට්ඨාස බෙදා වෙන් කරනු ලැබුවාය"@si .
+
+ex:මිෂනාර්_පාසල a ex:Entity ;
+    rdfs:label "මිෂනාර් පාසල"@si .
+
+ex:මිෂනාරි_පාසල් a ex:Entity ;
+    rdfs:label "මිෂනාරි පාසල්"@si ;
+    ex:associated_with ex:Portuguese .
+
+ex:මිෂනාරී_සංවිධාන a ex:Entity ;
+    rdfs:label "මිෂනාරී සංවිධාන"@si ;
+    ex:associated_with ex:British .
+
+ex:මිෂනාරීන් a ex:Ruler ;
+    rdfs:label " මිෂනාරීන්"@si ;
+    ex:associated_with ex:British .
+
+ex:මුතුරාජවෙල a ex:Entity ;
+    rdfs:label "මුතුරාජවෙල"@si .
+
+ex:මුල්ලේරියා a ex:Entity ;
+    rdfs:label "මුල්ලේරියා"@si .
+
+ex:මුස්ලිම් a ex:Entity ;
+    rdfs:label "මුස්ලිම්"@si .
+
+ex:මුස්ලිම්_ජනතාව a ex:Entity ;
+    rdfs:label "මුස්ලිම් ජනතාව"@si .
+
+ex:යුරෝපියයන් a ex:Ruler ;
+    rdfs:label "යුරෝපියයන්"@si .
+
+ex:යුරෝපීය a ex:Entity ;
+    rdfs:label "යුරෝපීය"@si ;
+    ex:associated_with ex:Portuguese .
+
+<http://example.org/colonial#යුරෝපීය_ව්‍යවස්ථා_ප්‍රජාව> a ex:Entity ;
+    rdfs:label "යුරෝපීය ව්‍යවස්ථා ප්‍රජාව"@si ;
+    ex:associated_with ex:British .
+
+ex:යුරෝපීයයන් a ex:Ruler ;
+    rdfs:label "යුරෝපීයයන්"@si ;
+    ex:associated_with ex:British .
+
+ex:යෝධ_වැව a ex:Entity ;
+    rdfs:label "යෝධ වැව"@si .
+
+ex:යෝධවැව_පාචක්කුලම a ex:Entity ;
+    rdfs:label "යෝධවැව පාචක්කුලම"@si .
+
+ex:රජය a ex:Entity ;
+    rdfs:label "රජය"@si ;
+    ex:associated_with ex:British .
+
+ex:රජු a ex:Ruler ;
+    rdfs:label "රජු"@si .
+
+ex:රත්මලාන_කාර්මික_ජනපදය a ex:Entity ;
+    rdfs:label "රත්මලාන කාර්මික ජනපදය"@si .
+
+ex:රදල_පර්ධානීන් a ex:Ruler ;
+    rdfs:label "රදල පර්ධානීන්"@si .
+
+ex:රබර් a ex:Entity ;
+    rdfs:label "රබර්"@si .
+
+<http://example.org/colonial#රාජකාරී_ශ්‍රම_ක්_රමය> a ex:Entity ;
+    rdfs:label "රාජකාරී ශ්‍රම ක් රමය"@si ;
+    ex:associated_with ex:British .
+
+ex:රාජකීය_විද්යාලය a ex:Entity ;
+    rdfs:label "රාජකීය විද්යාලය"@si .
+
+ex:රාජසිංහ a ex:Ruler ;
+    rdfs:label "රාජසිංහ"@si .
+
+ex:රාජසිංහ_රජු a ex:Ruler ;
+    rdfs:label "රාජසිංහ රජු"@si .
+
+<http://example.org/colonial#රාජ්‍ය_නිළධාරින්> a ex:Ruler ;
+    rdfs:label "රාජ්‍ය නිළධාරින්"@si ;
+    ex:associated_with ex:British .
+
+<http://example.org/colonial#රාජ්‍ය_මන්ත්‍රණ_සභාව> a ex:Entity ;
+    rdfs:label "රාජ්‍ය මන්ත්‍රණ සභාව"@si .
+
+<http://example.org/colonial#රාජ්‍ය_සේවා_කොමිසම> a ex:Entity ;
+    rdfs:label "රාජ්‍ය සේවා කොමිසම"@si .
+
+ex:රාද්_වැන්_ජස්ටිට a ex:Ruler ;
+    rdfs:label "රාද් වැන් ජස්ටිට"@si ;
+    ex:associated_with ex:Dutch .
+
+<http://example.org/colonial#රික්‍යුනාමල_වරාය> a ex:Entity ;
+    rdfs:label "රික්‍යුනාමල වරාය"@si ;
+    ex:associated_with ex:British .
+
+ex:රිකුණාමල a ex:Entity ;
+    rdfs:label "රිකුණාමල"@si .
+
+ex:රිකුණාමලය a ex:Entity ;
+    rdfs:label "රිකුණාමලය"@si .
+
+ex:රිකුනාමල_වරාය a ex:Entity ;
+    rdfs:label "රිකුනාමල වරාය"@si .
+
+ex:ලංකා a ex:Entity ;
+    rdfs:label "ලංකා"@si .
+
+ex:ලංකා_ජාතික_සංගමය a ex:Entity ;
+    rdfs:label "ලංකා ජාතික සංගමය"@si .
+
+ex:ලංකා_සංගමය a ex:Entity ;
+    rdfs:label "ලංකා සංගමය"@si .
+
+ex:ලංකා_සමසමාජ_පක්ෂය a ex:Entity ;
+    rdfs:label "ලංකා සමසමාජ පක්ෂය"@si .
+
+ex:ලංකෝපකාර_මුද්_රණාලය a ex:Entity ;
+    rdfs:label "ලංකෝපකාර මුද් රණාලය"@si ;
+    ex:associated_with ex:British .
+
+ex:ලංසි a ex:Entity ;
+    rdfs:label "ලංසි"@si .
+
+ex:ලක්මිණි_පහන_සරසවි_සඳරැස a ex:Entity ;
+    rdfs:label "ලක්මිණි පහන සරසවි සඳරැස"@si .
+
+ex:ලන්දේසි a ex:Entity ;
+    rdfs:label "ලන්දේසි"@si ;
+    ex:associated_with ex:Dutch .
+
+ex:ලන්දේසීන් a ex:Entity,
+        ex:Ruler ;
+    rdfs:label "ලන්දේසීන්"@si ;
+    ex:associated_with ex:Dutch .
+
+ex:ලන්දේසීහු a ex:Entity ;
+    rdfs:label "ලන්දේසීහු"@si ;
+    ex:associated_with ex:Dutch .
+
+ex:ලාංකික_සාමාධිකයන් a ex:Ruler ;
+    rdfs:label "ලාංකික සාමාධිකයන්"@si .
+
+ex:ලුණු a ex:Entity ;
+    rdfs:label "ලුණු"@si .
+
+ex:ලුණුවිල_පොල්_පර්යේෂණාගාරයක් a ex:Entity ;
+    rdfs:label "ලුණුවිල පොල් පර්යේෂණාගාරයක්"@si .
+
+ex:ලුණුවිල_පොල්_පර්යේෂණායතනය a ex:Entity ;
+    rdfs:label "ලුණුවිල පොල් පර්යේෂණායතනය"@si .
+
+ex:වච්නිකුලට්_පදවිය a ex:Entity ;
+    rdfs:label "වච්නිකුලට් පදවිය"@si .
+
+ex:වතු_වගාව a ex:Entity ;
+    rdfs:label "වතු වගාව"@si ;
+    ex:associated_with ex:Portuguese .
+
+ex:වරාගොඩ_වාදය a ex:HistoricalEvent ;
+    rdfs:label "වරාගොඩ වාදය"@si ;
+    ex:associated_with ex:Portuguese .
+
+<http://example.org/colonial#ව්‍යවස්ථාදායක_සභාව> a ex:Entity ;
+    rdfs:label "ව්‍යවස්ථාදායක සභාව"@si .
+
+<http://example.org/colonial#ව්‍යවස්ථාදායකය> a ex:Entity ;
+    rdfs:label "ව්‍යවස්ථාදායකය"@si .
+
+ex:වික්ටෝරියා_ජලාශය a ex:Entity ;
+    rdfs:label "වික්ටෝරියා ජලාශය"@si .
+
+<http://example.org/colonial#වික්‍රම_සර්වසිද්ධි> a ex:Ruler ;
+    rdfs:label "වික්‍රම සර්වසිද්ධි"@si .
+
+ex:විජයානන්ද_දහනායක a ex:Ruler ;
+    rdfs:label "විජයානන්ද දහනායක"@si .
+
+ex:විප්ලවකාරී_සමසමාජ_පක්ෂය a ex:Entity ;
+    rdfs:label "විප්ලවකාරී සමසමාජ පක්ෂය"@si .
+
+ex:විමලධර්මසූරිය a ex:Ruler ;
+    rdfs:label "විමලධර්මසූරිය"@si .
+
+ex:විමලධර්මසූරිය_රජු a ex:Ruler ;
+    rdfs:label "විමලධර්මසූරිය රජු"@si .
+
+ex:විලියම්_ඩිග්බි a ex:Ruler ;
+    rdfs:label "විලියම් ඩිග්බි"@si .
+
+ex:විලියම්_රජතුමා a ex:Ruler ;
+    rdfs:label "විලියම් රජතුමා"@si ;
+    ex:associated_with ex:British .
+
+<http://example.org/colonial#විවෘත_විශ්ව_විද්‍යාලය> a ex:Entity ;
+    rdfs:label "විවෘත විශ්ව විද්‍යාලය"@si .
+
+ex:වී a ex:Entity ;
+    rdfs:label "වී"@si .
+
+ex:වීරසුන්දර_බණ්ඩාර a ex:Ruler ;
+    rdfs:label "වීරසුන්දර බණ්ඩාර"@si .
+
+ex:වෙසක්_පොහොය a ex:HistoricalEvent ;
+    rdfs:label "වෙසක් පොහොය"@si .
+
+ex:වේල්ලස්ස a ex:Entity ;
+    rdfs:label "වේල්ලස්ස"@si .
+
+ex:ශ්_රේෂ්ඨාධිකරණය_Supreme_Court a ex:Entity ;
+    rdfs:label " ශ් රේෂ්ඨාධිකරණය (Supreme Court)"@si .
+
+<http://example.org/colonial#ශ්‍රමීය> a ex:Entity ;
+    rdfs:label "ශ්‍රමීය"@si .
+
+<http://example.org/colonial#ශ්‍රී_ගම්_සභාව> a ex:Entity ;
+    rdfs:label "ශ්‍රී ගම් සභාව"@si .
+
+<http://example.org/colonial#ශ්‍රී_ලංකා_නිදහස්_පක්ෂය> a ex:Entity ;
+    rdfs:label "ශ්‍රී ලංකා නිදහස් පක්ෂය"@si .
+
+<http://example.org/colonial#ශ්‍රී_ලංකා_රජය> a ex:Entity ;
+    rdfs:label "ශ්‍රී ලංකා රජය"@si .
+
+<http://example.org/colonial#ශ්‍රී_ලංකා_රේෂ්ඨාධිකරණය> a ex:Entity ;
+    rdfs:label "ශ්‍රී ලංකා රේෂ්ඨාධිකරණය"@si .
+
+<http://example.org/colonial#ශ්‍රී_ලංකා_වෙළෙඳ_කටයුතු> a ex:HistoricalEvent ;
+    rdfs:label "ශ්‍රී ලංකා වෙළෙඳ කටයුතු"@si .
+
+<http://example.org/colonial#ශ්‍රී_ලංකා_ශ්‍රේෂ්ඨාධිකරණය> a ex:Entity ;
+    rdfs:label "ශ්‍රී ලංකා ශ්‍රේෂ්ඨාධිකරණය"@si .
+
+<http://example.org/colonial#ශ්‍රී_ලංකා_සමසමාජ_පක්ෂය> a ex:Entity ;
+    rdfs:label "ශ්‍රී ලංකා සමසමාජ පක්ෂය"@si .
+
+<http://example.org/colonial#ශ්‍රී_වික්‍රම_රාජසිංහ_රජු> a ex:Ruler ;
+    rdfs:label "ශ්‍රී වික්‍රම රාජසිංහ රජු"@si .
+
+<http://example.org/colonial#ශ්‍රේෂ්ඨාධිකරණය> a ex:Entity ;
+    rdfs:label "ශ්‍රේෂ්ඨාධිකරණය"@si .
+
+ex:ශෛව_පුරකාශ්_විද්යාශාලාව a ex:Entity ;
+    rdfs:label "ශෛව පුරකාශ් විද්යාශාලාව"@si .
+
+ex:සංගිලිකනදරාව a ex:Entity ;
+    rdfs:label "සංගිලිකනදරාව"@si .
+
+ex:සබරගමු a ex:Entity ;
+    rdfs:label "සබරගමු"@si .
+
+ex:ස්වීඩන්_රජය a ex:Ruler ;
+    rdfs:label "ස්වීඩන් රජය"@si .
+
+<http://example.org/colonial#සාම්ප්‍රදායික_සංස්කෘතික_ලක්ෂණ> a ex:Entity ;
+    rdfs:label "සාම්ප්‍රදායික සංස්කෘතික ලක්ෂණ"@si .
+
+ex:සාමාජිකයන් a ex:Ruler ;
+    rdfs:label " සාමාජිකයන්"@si .
+
+ex:සිංකොනා a ex:Entity ;
+    rdfs:label "සිංකොනා"@si .
+
+ex:සිංහල a ex:Entity ;
+    rdfs:label "සිංහල"@si .
+
+ex:සිංහල_ජාතිය a ex:Entity ;
+    rdfs:label "සිංහල ජාතිය"@si .
+
+ex:සිංහල_බෞද්ධයා a ex:Entity ;
+    rdfs:label "සිංහල බෞද්ධයා"@si .
+
+ex:සිංහල_භාෂාව a ex:Entity ;
+    rdfs:label "සිංහල භාෂාව"@si .
+
+ex:සිංහල_සේනා a ex:Entity ;
+    rdfs:label "සිංහල සේනා"@si .
+
+ex:සීතාවක a ex:Entity ;
+    rdfs:label "සීතාවක"@si .
+
+<http://example.org/colonial#සූරිය_මල්_ව්‍යාපාරය> a ex:HistoricalEvent ;
+    rdfs:label "සූරිය මල් ව්‍යාපාරය"@si ;
+    ex:associated_with ex:Portuguese .
+
+ex:සෙනෙට්_මණ්ඩලය a ex:Entity ;
+    rdfs:label "සෙනෙට් මණ්ඩලය"@si .
+
+ex:සෙනෙට්_සභාව a ex:Entity ;
+    rdfs:label "සෙනෙට් සභාව"@si .
+
+ex:සොරබොරවැව a ex:Entity ;
+    rdfs:label "සොරබොරවැව"@si .
+
+<http://example.org/colonial#සෝල්බරි_ආණ්ඩුක්_රම_ව්‍යවස්ථාව> a ex:Entity ;
+    rdfs:label "සෝල්බරි ආණ්ඩුක් රම ව්‍යවස්ථාව"@si .
+
+<http://example.org/colonial#සෝල්බරි_ආණ්ඩුක්‍රම_ව්‍යවස්ථාව> a ex:HistoricalEvent ;
+    rdfs:label "සෝල්බරි ආණ්ඩුක්‍රම ව්‍යවස්ථාව"@si .
+
+<http://example.org/colonial#සෝල්බරි_ව්‍යවස්ථාව> a ex:Entity ;
+    rdfs:label "සෝල්බරි ව්‍යවස්ථාව"@si .
+
+ex:හත්කෝරළය a ex:Entity ;
+    rdfs:label "හත්කෝරළය"@si .
+
+ex:හල්ෆ්ට් a ex:Ruler ;
+    rdfs:label "හල්ෆ්ට්"@si .
+
+ex:හලාවත a ex:Entity ;
+    rdfs:label "හලාවත"@si .
+
+ex:හාරිස්පත්තුව a ex:Entity ;
+    rdfs:label "හාරිස්පත්තුව"@si .
+
+ex:හින්දු_විද්යාාලය a ex:Entity ;
+    rdfs:label "හින්දු විද්යාාලය"@si .
+
+ex:හුෆ්ට්_අද්මිනිස්තාර් a ex:Ruler ;
+    rdfs:label "හුෆ්ට් අද්මිනිස්තාර්"@si ;
+    ex:associated_with ex:Portuguese .
+
+ex:හූෆ්ට්මන් a ex:Ruler ;
+    rdfs:label "හූෆ්ට්මන්"@si ;
+    ex:associated_with ex:Dutch .
+
+ex:හෙන්රි_කුමරු a ex:Ruler ;
+    rdfs:label "හෙන්රි කුමරු"@si ;
+    ex:associated_with ex:Portuguese .
+
+ex:හෙන්රි_ස්ටීල්_ඕල්කොට් a ex:Ruler ;
+    rdfs:label "හෙන්රි ස්ටීල් ඕල්කොට්"@si ;
+    ex:associated_with ex:British .
+
+ex:ෆන්_එංගල්බෙක් a ex:Ruler ;
+    rdfs:label "ෆන් එංගල්බෙක්"@si ;
+    ex:associated_with ex:Dutch .
+
+ex:Portuguese a ex:ColonialPower,
+        ex:Entity ;
+    rdfs:label "Portuguese"@en,
+        "Portuguese"@si,
+        "පෘතුගීසි"@si ;
+    ex:associated_with ex:Portuguese .
+
+ex:Dutch a ex:ColonialPower,
+        ex:Entity ;
+    rdfs:label "Dutch"@en,
+        "Dutch"@si,
+        "ලන්දේසි"@si ;
+    ex:associated_with ex:Dutch .
+
+ex:British a ex:ColonialPower,
+        ex:Entity ;
+    rdfs:label "British"@en,
+        "British"@si,
+        "ඉංග්‍රීසි"@si ;
+    ex:associated_with ex:British .
+

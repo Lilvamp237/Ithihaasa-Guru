@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-meta_path = Path("vector_store/history_meta.json")
+meta_path = Path("vector_store_v2/history_meta_advanced.json")
 data = json.loads(meta_path.read_text(encoding="utf-8"))
 
 # Overwrite IDs with a global counter

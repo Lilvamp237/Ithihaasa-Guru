@@ -72,4 +72,4 @@ def process_json(input_file, output_file):
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 # Run the process
-process_json('C:\\Github Projects\\Ithihaasa-Guru\\vector_store\\history_meta.json', 'C:\\Github Projects\\Ithihaasa-Guru\\vector_store\\history_meta_cleaned.json')
+process_json('C:\\Github Projects\\Ithihaasa-Guru\\vector_store_v2\\history_meta_advanced.json', 'C:\\Github Projects\\Ithihaasa-Guru\\vector_store_v2\\history_meta_cleaned.json')
