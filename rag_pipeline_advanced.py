@@ -9,7 +9,7 @@ from typing import Any, Dict, List, Optional
 
 # Force Offline mode for HuggingFace
 os.environ['TRANSFORMERS_OFFLINE'] = '1'
-os.environ['HF_HUB_OFFLINE'] = '0'
+os.environ['HF_HUB_OFFLINE'] = '1'
 
 import faiss
 import numpy as np
